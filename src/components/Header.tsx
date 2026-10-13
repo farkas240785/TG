@@ -40,12 +40,19 @@ export default function Header() {
             <Link to="/" className="flex items-center gap-4 shrink-0 group">
               <div className="relative w-12 h-12">
                 <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-                  <circle cx="24" cy="24" r="22" stroke="var(--c-gold)" strokeWidth="1.5" fill="none"/>
-                  <path d="M16 28C16 28 15 34 18 37C21 40 27 40 30 37C33 34 32 28 32 28" stroke="var(--c-gold)" strokeWidth="2" fill="none"/>
-                  <ellipse cx="24" cy="28" rx="8" ry="2.5" stroke="var(--c-gold)" strokeWidth="1.5" fill="none"/>
-                  <path d="M24 12C24 12 20 18 22 22C24 26 26 22 26 22C26 22 28 18 24 12Z" fill="var(--c-gold-rich)"/>
-                  <path d="M24 16C24 16 22 20 23 22C24 24 25 22 25 22C25 22 26 20 24 16Z" fill="var(--c-gold-light)"/>
-                  <rect x="18" y="38" width="12" height="1.5" fill="var(--c-brass)"/>
+                  <defs>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" style={{ stopColor: '#E8C547' }}/>
+                      <stop offset="50%" style={{ stopColor: '#D4A017' }}/>
+                      <stop offset="100%" style={{ stopColor: '#8B6914' }}/>
+                    </linearGradient>
+                  </defs>
+                  <circle cx="24" cy="24" r="22" stroke="url(#goldGrad)" strokeWidth="1.5" fill="none"/>
+                  <path d="M16 28C16 28 15 34 18 37C21 40 27 40 30 37C33 34 32 28 32 28" stroke="url(#goldGrad)" strokeWidth="2.5" fill="none"/>
+                  <ellipse cx="24" cy="28" rx="8" ry="2.5" stroke="url(#goldGrad)" strokeWidth="1.5" fill="none"/>
+                  <path d="M24 10C24 10 19 17 21 22C23 27 25 22 25 22C25 22 29 17 24 10Z" fill="url(#goldGrad)"/>
+                  <path d="M24 15C24 15 21 20 22 22C23 24 25 22 25 22C25 22 27 20 24 15Z" fill="#F0D97A" opacity="0.8"/>
+                  <rect x="17" y="39" width="14" height="2" rx="1" fill="url(#goldGrad)"/>
                 </svg>
               </div>
               <div>

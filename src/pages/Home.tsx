@@ -7,8 +7,8 @@ export default function Home() {
       <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--c-void)', minHeight: '60vh' }}>
         <div className="absolute inset-0">
           <img 
-            src="https://image.qwenlm.ai/generated-images/bd86f50e-15eb-40ee-978f-afdba6963e73/_result.png" 
-            alt="Литейно-кузнечная мастерская" 
+            src="https://image.qwenlm.ai/generated-images/70e6b67b-7d1c-4c2a-a769-92665b20eed4/_result.png" 
+            alt="Современная технологичная мастерская" 
             className="w-full h-full object-cover opacity-40"
             style={{ filter: 'brightness(0.6) contrast(1.15) saturate(0.9)' }}
           />
@@ -87,10 +87,10 @@ export default function Home() {
               const categoryImages = [
                 'https://image.qwenlm.ai/generated-images/084b6f4b-8996-499b-a24c-4d93eea8b2bb/_result.png',
                 'https://image.qwenlm.ai/generated-images/468d5ad8-6d3f-4b1c-a66d-edcd7bd05524/_result.png',
-                'https://placehold.co/600x450/1A1714/E8923A?text=Наличники',
-                'https://placehold.co/600x450/1A1714/E8923A?text=Решётки',
-                'https://placehold.co/600x450/1A1714/E8923A?text=Петли',
-                'https://placehold.co/600x450/1A1714/E8923A?text=Скобы'
+                'https://image.qwenlm.ai/generated-images/cf5e9c67-bb6b-4608-9e84-a995a1b10af8/_result.png',
+                'https://image.qwenlm.ai/generated-images/999490c9-9099-42bd-aa26-70facf19bc0f/_result.png',
+                'https://image.qwenlm.ai/generated-images/64620116-25bd-4bf8-9305-c4b3a8baa679/_result.png',
+                'https://image.qwenlm.ai/generated-images/3cf26d66-83c7-432c-859d-e0c74062ba93/_result.png'
               ];
               return (
                 <Link key={key} to={`/catalog?type=${key}`} className="group card-dark overflow-hidden">
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="aspect-[4/3] overflow-hidden" style={{ backgroundColor: 'var(--c-iron)' }}>
-              <img src="https://image.qwenlm.ai/generated-images/b250ca15-0822-4f52-8f3d-127e84083c51/_result.png" alt="Интерьер дворца" className="w-full h-full object-cover" loading="lazy" />
+              <img src="https://image.qwenlm.ai/generated-images/9526f72f-993b-4fd5-a62d-a179a5f5cd40/_result.png" alt="Образец старой ручки с чертежами и расчётами" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div>
               <p className="label-gold mb-6">Начать работу</p>

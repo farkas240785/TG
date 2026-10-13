@@ -18,8 +18,8 @@ export default function Footer() {
               </svg>
               <div className="text-lg font-semibold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
             </div>
-            <p className="text-sm leading-relaxed max-w-sm mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Литейно-кузнечная мануфактура. Научно обоснованное воссоздание исторической фурнитуры для объектов культурного наследия с 2014 года.</p>
-            <div className="label-gold text-xs" style={{ color: 'var(--c-gold)' }}>ИНН 7841234567 · ОГРН 1027801234567</div>
+            <p className="text-sm leading-relaxed max-w-sm mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Литейно-кузнечная мануфактура. Научно обоснованное воссоздание исторической фурнитуры для объектов культурного наследия с 2014 года. Производство расположено в г. Чебоксары, Чувашская Республика.</p>
+            <div className="label-gold text-xs" style={{ color: 'var(--c-gold)' }}>ИНН 2130123456 · ОГРН 1022100123456</div>
           </div>
           <div className="md:col-span-3">
             <p className="label-gold mb-6" style={{ color: 'var(--c-gold)' }}>Навигация</p>
@@ -32,8 +32,8 @@ export default function Footer() {
           <div className="md:col-span-2">
             <p className="label-gold mb-6" style={{ color: 'var(--c-gold)' }}>Контакты</p>
             <div className="space-y-4 text-sm font-light" style={{ color: 'var(--c-ash)' }}>
-              <div><a href="tel:+78121234567" className="block text-lg font-medium hover:text-[var(--c-gold-rich)] transition-colors" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>+7 (812) 123-45-67</a><a href="mailto:info@tigeliGorn.ru" className="block hover:text-[var(--c-gold-rich)] transition-colors">info@tigeliGorn.ru</a></div>
-              <div><p>191028, Санкт-Петербург</p><p>ул. Кузнечная, 12</p></div>
+              <div><a href="tel:+78352123456" className="block text-lg font-medium hover:text-[var(--c-gold-rich)] transition-colors" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>+7 (8352) 12-34-56</a><a href="mailto:info@tigeliGorn.ru" className="block hover:text-[var(--c-gold-rich)] transition-colors">info@tigeliGorn.ru</a></div>
+              <div><p>428000, г. Чебоксары</p><p>пр-кт Мира, д. 1</p></div>
             </div>
           </div>
         </div>
