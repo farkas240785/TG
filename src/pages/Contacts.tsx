@@ -21,7 +21,7 @@ export default function Contacts() {
               <div><p className="label-gold mb-4">Связь</p><a href="tel:+78121234567" className="block text-3xl font-bold mb-3 hover:text-[var(--c-gold)] transition-colors" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>+7 (812) 123-45-67</a><a href="mailto:info@tigeliGorn.ru" className="block font-light hover:text-[var(--c-gold)] transition-colors">info@tigeliGorn.ru</a></div>
               <div><p className="label-gold mb-4">Часы работы</p><p className="font-medium mb-1">Пн–Пт: 09:00 – 18:00 MSK</p><p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Сб: по записи · Вс: выходной</p></div>
               <div className="p-8" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}><p className="label-gold mb-4">Реквизиты</p><div className="space-y-2 font-mono text-xs"><p>ООО «Тигель и Горн»</p><p>ИНН 7841234567</p><p>КПП 784101001</p><p>ОГРН 1027801234567</p></div></div>
-              <div className="overflow-hidden" style={{ aspectRatio: '16/9', backgroundColor: 'var(--c-charcoal)' }}><img src="https://image.qwenlm.ai/generated-images/a639c599-f7c1-4de2-af28-8381feb1e987/_result.png" alt="Карта Санкт-Петербурга" className="w-full h-full object-cover" loading="lazy" /></div>
+              <div className="overflow-hidden" style={{ aspectRatio: '16/9', backgroundColor: 'var(--c-charcoal)' }}><img src="https://image.qwenlm.ai/generated-images/04db9183-54ad-42be-912c-dfae7d8a8070/_result.png" alt="Чебоксары, Чувашская Республика" className="w-full h-full object-cover" loading="lazy" /></div>
             </div>
           </div>
         </div>

@@ -7,8 +7,8 @@ export default function Home() {
       <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--c-void)', minHeight: '60vh' }}>
         <div className="absolute inset-0">
           <img 
-            src="https://image.qwenlm.ai/generated-images/70e6b67b-7d1c-4c2a-a769-92665b20eed4/_result.png" 
-            alt="Современная технологичная мастерская" 
+            src="https://image.qwenlm.ai/generated-images/3129222d-47e2-4cd6-b822-218f65dc69de/_result.png" 
+            alt="Современная технологичная мастерская с ЧПУ" 
             className="w-full h-full object-cover opacity-40"
             style={{ filter: 'brightness(0.6) contrast(1.15) saturate(0.9)' }}
           />
@@ -52,7 +52,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             <article className="relative overflow-hidden group" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
               <div className="aspect-[16/10] overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/65f75458-a91d-4ce7-ad8d-591511b8569c/_result.png" alt="Металлургический контроль" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <img src="https://image.qwenlm.ai/generated-images/d4283e19-f164-4ae3-91c8-14cca370592f/_result.png" alt="Литьё латуни в форму" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
               </div>
               <div className="p-8 md:p-10">
                 <p className="label-gold mb-4">I. Тигель</p>
@@ -63,7 +63,7 @@ export default function Home() {
             </article>
             <article className="relative overflow-hidden group" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
               <div className="aspect-[16/10] overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/468d5ad8-6d3f-4b1c-a66d-edcd7bd05524/_result.png" alt="Кузнечное ремесло" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <img src="https://image.qwenlm.ai/generated-images/a8ab9a65-9ede-41a8-9f37-bd5756f44b1c/_result.png" alt="Кузнечный горн" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
               </div>
               <div className="p-8 md:p-10">
                 <p className="label-gold mb-4">II. Горн</p>
@@ -85,8 +85,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {Object.entries(catalogMeta.types).slice(0, 6).map(([key, label], index) => {
               const categoryImages = [
-                'https://image.qwenlm.ai/generated-images/084b6f4b-8996-499b-a24c-4d93eea8b2bb/_result.png',
-                'https://image.qwenlm.ai/generated-images/468d5ad8-6d3f-4b1c-a66d-edcd7bd05524/_result.png',
+                'https://image.qwenlm.ai/generated-images/b9a85814-301c-4bf3-aa69-71c32ed8327d/_result.png',
+                'https://image.qwenlm.ai/generated-images/1849725d-a49f-4f00-8aee-d5698af41398/_result.png',
                 'https://image.qwenlm.ai/generated-images/cf5e9c67-bb6b-4608-9e84-a995a1b10af8/_result.png',
                 'https://image.qwenlm.ai/generated-images/999490c9-9099-42bd-aa26-70facf19bc0f/_result.png',
                 'https://image.qwenlm.ai/generated-images/64620116-25bd-4bf8-9305-c4b3a8baa679/_result.png',
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="aspect-[4/3] overflow-hidden" style={{ backgroundColor: 'var(--c-iron)' }}>
-              <img src="https://image.qwenlm.ai/generated-images/9526f72f-993b-4fd5-a62d-a179a5f5cd40/_result.png" alt="Образец старой ручки с чертежами и расчётами" className="w-full h-full object-cover" loading="lazy" />
+              <img src="https://image.qwenlm.ai/generated-images/6e497e76-29da-4b69-ac37-67e6158c17ae/_result.png" alt="Образец старой ручки с чертежами и расчётами" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div>
               <p className="label-gold mb-6">Начать работу</p>
