@@ -157,31 +157,22 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="card-dark p-8">
-              <div className="aspect-[3/4] mb-6 flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
-                <div className="text-center p-6">
-                  <div className="text-6xl mb-4" style={{ color: 'var(--c-gold)' }}>✉</div>
-                  <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Благодарственное письмо от КГИОП Санкт-Петербурга</p>
-                </div>
+              <div className="aspect-[3/4] mb-6 overflow-hidden">
+                <img src="https://image.qwenlm.ai/generated-images/9495b5d1-1829-449b-8ebd-69c94dec11f4/_result.png" alt="Благодарственное письмо от КГИОП" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>КГИОП Санкт-Петербурга</h3>
               <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За высокое качество реставрационных работ на объектах культурного наследия</p>
             </div>
             <div className="card-dark p-8">
-              <div className="aspect-[3/4] mb-6 flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
-                <div className="text-center p-6">
-                  <div className="text-6xl mb-4" style={{ color: 'var(--c-gold)' }}>✉</div>
-                  <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Благодарность от Государственного Эрмитажа</p>
-                </div>
+              <div className="aspect-[3/4] mb-6 overflow-hidden">
+                <img src="https://image.qwenlm.ai/generated-images/5ad288e5-2b88-45f6-b81a-b7d65f664b2b/_result.png" alt="Благодарственное письмо от Эрмитажа" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Государственный Эрмитаж</h3>
               <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За профессиональное воссоздание исторической фурнитуры</p>
             </div>
             <div className="card-dark p-8">
-              <div className="aspect-[3/4] mb-6 flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
-                <div className="text-center p-6">
-                  <div className="text-6xl mb-4" style={{ color: 'var(--c-gold)' }}>✉</div>
-                  <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Признательность от Союза реставраторов России</p>
-                </div>
+              <div className="aspect-[3/4] mb-6 overflow-hidden">
+                <img src="https://image.qwenlm.ai/generated-images/7ce33533-dcc8-4755-a0cf-214eda8b7362/_result.png" alt="Благодарственное письмо от Союза реставраторов" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Союз реставраторов России</h3>
               <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За вклад в сохранение культурного наследия</p>
