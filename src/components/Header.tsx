@@ -38,14 +38,14 @@ export default function Header() {
         <div className="container">
           <div className="flex items-center justify-between py-5 gap-6">
             <Link to="/" className="flex items-center gap-4 shrink-0 group">
-              <div className="relative w-11 h-11">
-                <svg viewBox="0 0 44 44" fill="none" className="w-full h-full">
-                  <path d="M10 20C10 20 9 28 12 32C15 36 29 36 32 32C35 28 34 20 34 20" stroke="var(--c-gold)" strokeWidth="2" fill="none"/>
-                  <ellipse cx="22" cy="20" rx="12" ry="3" stroke="var(--c-gold)" strokeWidth="1.5" fill="none"/>
-                  <path d="M22 8C22 8 18 14 20 18C22 22 24 18 24 18C24 18 26 14 22 8Z" fill="var(--c-gold-rich)"/>
-                  <path d="M22 12C22 12 20 16 21 18C22 20 23 18 23 18C23 18 24 16 22 12Z" fill="var(--c-gold-light)"/>
-                  <rect x="8" y="36" width="28" height="2" fill="var(--c-brass)"/>
-                  <path d="M12 36L10 38M32 36L34 38" stroke="var(--c-brass)" strokeWidth="1.5"/>
+              <div className="relative w-12 h-12">
+                <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+                  <circle cx="24" cy="24" r="22" stroke="var(--c-gold)" strokeWidth="1.5" fill="none"/>
+                  <path d="M16 28C16 28 15 34 18 37C21 40 27 40 30 37C33 34 32 28 32 28" stroke="var(--c-gold)" strokeWidth="2" fill="none"/>
+                  <ellipse cx="24" cy="28" rx="8" ry="2.5" stroke="var(--c-gold)" strokeWidth="1.5" fill="none"/>
+                  <path d="M24 12C24 12 20 18 22 22C24 26 26 22 26 22C26 22 28 18 24 12Z" fill="var(--c-gold-rich)"/>
+                  <path d="M24 16C24 16 22 20 23 22C24 24 25 22 25 22C25 22 26 20 24 16Z" fill="var(--c-gold-light)"/>
+                  <rect x="18" y="38" width="12" height="1.5" fill="var(--c-brass)"/>
                 </svg>
               </div>
               <div>

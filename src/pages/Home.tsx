@@ -7,7 +7,7 @@ export default function Home() {
       <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--c-void)', minHeight: '60vh' }}>
         <div className="absolute inset-0">
           <img 
-            src="https://image.qwenlm.ai/generated-images/fd7dc686-fef6-4756-b808-26d6125ee6ed/_result.png" 
+            src="https://image.qwenlm.ai/generated-images/bd86f50e-15eb-40ee-978f-afdba6963e73/_result.png" 
             alt="Литейно-кузнечная мастерская" 
             className="w-full h-full object-cover opacity-40"
             style={{ filter: 'brightness(0.6) contrast(1.15) saturate(0.9)' }}
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="aspect-[4/3] overflow-hidden" style={{ backgroundColor: 'var(--c-iron)' }}>
-              <img src="https://image.qwenlm.ai/generated-images/56a989cb-2724-4741-b339-b1fedf5f924b/_result.png" alt="Обсуждение проекта" className="w-full h-full object-cover" loading="lazy" />
+              <img src="https://image.qwenlm.ai/generated-images/b250ca15-0822-4f52-8f3d-127e84083c51/_result.png" alt="Интерьер дворца" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div>
               <p className="label-gold mb-6">Начать работу</p>
@@ -147,6 +147,47 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-1 forge-gradient"></div>
+      </section>
+
+      <section className="py-32 md:py-40" style={{ backgroundColor: 'var(--c-charcoal)' }}>
+        <div className="container">
+          <div className="text-center mb-16">
+            <p className="label-gold mb-4">Отзывы партнёров</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Благодарственные письма</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="card-dark p-8">
+              <div className="aspect-[3/4] mb-6 flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
+                <div className="text-center p-6">
+                  <div className="text-6xl mb-4" style={{ color: 'var(--c-gold)' }}>✉</div>
+                  <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Благодарственное письмо от КГИОП Санкт-Петербурга</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>КГИОП Санкт-Петербурга</h3>
+              <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За высокое качество реставрационных работ на объектах культурного наследия</p>
+            </div>
+            <div className="card-dark p-8">
+              <div className="aspect-[3/4] mb-6 flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
+                <div className="text-center p-6">
+                  <div className="text-6xl mb-4" style={{ color: 'var(--c-gold)' }}>✉</div>
+                  <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Благодарность от Государственного Эрмитажа</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Государственный Эрмитаж</h3>
+              <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За профессиональное воссоздание исторической фурнитуры</p>
+            </div>
+            <div className="card-dark p-8">
+              <div className="aspect-[3/4] mb-6 flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
+                <div className="text-center p-6">
+                  <div className="text-6xl mb-4" style={{ color: 'var(--c-gold)' }}>✉</div>
+                  <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Признательность от Союза реставраторов России</p>
+                </div>
+              </div>
+              <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Союз реставраторов России</h3>
+              <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За вклад в сохранение культурного наследия</p>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
