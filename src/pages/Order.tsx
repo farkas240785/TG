@@ -1,0 +1,26 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+export default function Order() {
+  const [projectType, setProjectType] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  if (submitted) return (<div className="container py-40 text-center"><p className="label-gold mb-8">Заявка принята</p><h1 className="text-5xl md:text-6xl font-bold mb-10 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Спасибо</h1><p className="text-lg mb-16 max-w-lg mx-auto font-light" style={{ color: 'var(--c-ash)' }}>Мы свяжемся с вами в течение 1 рабочего дня.</p><Link to="/" className="link-forge">Вернуться на главную</Link></div>);
+  return (
+    <div>
+      <section className="relative py-20 md:py-28 overflow-hidden" style={{ backgroundColor: 'var(--c-charcoal)' }}>
+        <div className="absolute inset-0 coal-texture"></div>
+        <div className="container relative z-10"><p className="label-gold mb-6">Расчёт по проекту КГИОП</p><h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-none mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Заказать расчёт</h1><p className="text-lg max-w-2xl font-light" style={{ color: 'var(--c-ash)' }}>Заполните форму — подготовим расчёт стоимости и сроков.</p></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 forge-gradient"></div>
+      </section>
+      <section className="container py-16">
+        <form onSubmit={(e) => { e.preventDefault(); if (!agreed) { alert('Необходимо согласие'); return; } setSubmitted(true); }} className="max-w-3xl">
+          <div className="mb-16"><p className="label-gold mb-8">I. Тип заказчика *</p><div className="grid grid-cols-2 md:grid-cols-4 gap-4">{['ГАП', 'Реставратор', 'Генподрядчик', 'Другое'].map(t => (<label key={t} className="cursor-pointer"><input type="radio" name="customer" value={t} required className="peer hidden" /><div className="p-5 text-center text-sm font-light border transition-all peer-checked:bg-[var(--c-gold)] peer-checked:text-[var(--c-coal)] hover:border-[var(--c-gold)]" style={{ borderColor: 'var(--c-steel)' }}>{t}</div></label>))}</div></div>
+          <div className="mb-16"><p className="label-gold mb-8">II. Тип проекта *</p><div className="space-y-4">{[{ value: 'restoration', label: 'Реставрация ОКН' }, { value: 'historic', label: 'Новое строительство в исторической среде' }, { value: 'private', label: 'Частный заказ' }].map(t => (<label key={t.value} className="cursor-pointer block"><input type="radio" name="project" value={t.value} required onChange={e => setProjectType(e.target.value)} className="peer hidden" /><div className="p-5 flex items-center gap-5 border transition-all peer-checked:bg-[var(--c-gold)] peer-checked:text-[var(--c-coal)] hover:border-[var(--c-gold)]" style={{ borderColor: 'var(--c-steel)' }}><span className="text-sm font-light">{t.label}</span></div></label>))}</div></div>
+          <div className="mb-16"><p className="label-gold mb-8">V. Контактные данные *</p><div className="grid grid-cols-1 md:grid-cols-2 gap-6"><input type="text" placeholder="Имя" required className="p-5 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] transition-colors font-light" style={{ borderColor: 'var(--c-steel)' }} /><input type="text" placeholder="Организация" className="p-5 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] transition-colors font-light" style={{ borderColor: 'var(--c-steel)' }} /><input type="email" placeholder="Email" required className="p-5 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] transition-colors font-light" style={{ borderColor: 'var(--c-steel)' }} /><input type="tel" placeholder="Телефон" required className="p-5 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] transition-colors font-light" style={{ borderColor: 'var(--c-steel)' }} /></div></div>
+          <label className="flex items-start gap-4 mb-10 cursor-pointer"><input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-1 w-5 h-5" required /><span className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Согласен на обработку персональных данных (ФЗ-152) *</span></label>
+          <button type="submit" className="btn-forge">Рассчитать по проекту КГИОП</button>
+        </form>
+      </section>
+    </div>
+  );
+}
