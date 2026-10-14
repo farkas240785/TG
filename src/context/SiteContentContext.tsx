@@ -43,7 +43,7 @@ const defaultContent: SiteContent = {
     accent: 'Не стилизуем — а восстанавливаем.',
   },
   aboutBlocks: [
-    { title: 'Тигель', heading: 'Металлургия и точность', description: 'Контроль химического состава каждой партии. Латунь Л63 по ГОСТ 17711-93, ЛС59-1, стали Ст3, ЧХН. Спектрометрический анализ, паспорт на каждую партию.', imageUrl: 'https://image.qwenlm.ai/generated-images/c749bbbd-170a-4de6-9e6a-ca8a0510e601/_result.png' },
+    { title: 'Тигель', heading: 'Металлургия и точность', description: 'Контроль химического состава каждой партии. Латунь Л63 по ГОСТ 17711-93, ЛС59-1, стали Ст3, ЧХН. Спектрометрический анализ, паспорт на каждую партию.', imageUrl: 'https://image.qwenlm.ai/generated-images/d4283e19-f164-4ae3-91c8-14cca370592f/_result.png' },
     { title: 'Горн', heading: 'Ремесло и форма', description: 'Художественная ковка, ручная формовка, патинирование по историческим рецептурам. Следы ремесла — доказательство подлинности.', imageUrl: 'https://image.qwenlm.ai/generated-images/a8ab9a65-9ede-41a8-9f37-bd5756f44b1c/_result.png' },
   ],
   steps: [
