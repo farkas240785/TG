@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Order() {
   const [projectType, setProjectType] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const { content } = useSiteContent();
 
   if (submitted) return (
     <div className="container py-40 text-center">
@@ -21,8 +23,8 @@ export default function Order() {
         <div className="absolute inset-0 coal-texture"></div>
         <div className="container relative z-10">
           <p className="label-gold mb-6">Расчёт по проекту КГИОП</p>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-none mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Заказать расчёт</h1>
-          <p className="text-lg max-w-2xl font-light" style={{ color: 'var(--c-ash)' }}>Заполните форму — подготовим расчёт стоимости и сроков.</p>
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-none mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{content.orderForm.title}</h1>
+          <p className="text-lg max-w-2xl font-light" style={{ color: 'var(--c-ash)' }}>{content.orderForm.description}</p>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-1 forge-gradient"></div>
       </section>
@@ -32,7 +34,7 @@ export default function Order() {
           <div className="mb-16">
             <p className="label-gold mb-8">I. Тип заказчика *</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {['ГАП', 'Реставратор', 'Генподрядчик', 'Другое'].map(t => (
+              {content.orderForm.customerTypes.map(t => (
                 <label key={t} className="cursor-pointer">
                   <input type="radio" name="customer" value={t} required className="peer hidden" />
                   <div className="p-5 text-center text-sm font-light border transition-all peer-checked:bg-[var(--c-gold)] peer-checked:text-[var(--c-coal)] hover:border-[var(--c-gold)]" style={{ borderColor: 'var(--c-steel)' }}>{t}</div>
@@ -44,7 +46,7 @@ export default function Order() {
           <div className="mb-16">
             <p className="label-gold mb-8">II. Тип проекта *</p>
             <div className="space-y-4">
-              {[{ value: 'restoration', label: 'Реставрация ОКН' }, { value: 'historic', label: 'Новое строительство в исторической среде' }, { value: 'private', label: 'Частный заказ' }].map(t => (
+              {content.orderForm.projectTypes.map(t => (
                 <label key={t.value} className="cursor-pointer block">
                   <input type="radio" name="project" value={t.value} required onChange={e => setProjectType(e.target.value)} className="peer hidden" />
                   <div className="p-5 flex items-center gap-5 border transition-all peer-checked:bg-[var(--c-gold)] peer-checked:text-[var(--c-coal)] hover:border-[var(--c-gold)]" style={{ borderColor: 'var(--c-steel)' }}>

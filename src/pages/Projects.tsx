@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { projects } from '../data/catalog';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Projects() {
+  const { content } = useSiteContent();
   const [selected, setSelected] = useState<string | null>(null);
-  const project = selected ? projects.find(p => p.id === selected) : null;
+  const project = selected ? content.projects.find(p => p.id === selected) : null;
 
   return (
     <div>
@@ -19,10 +20,10 @@ export default function Projects() {
 
       <section className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map(p => (
+          {content.projects.map(p => (
             <article key={p.id} className="group cursor-pointer card-dark overflow-hidden" onClick={() => setSelected(p.id)}>
               <div style={{ aspectRatio: '4/3' }}>
-                <img src={p.images.cover} alt={p.object} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <img src={p.cover} alt={p.object} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
               </div>
               <div className="p-8">
                 <p className="font-mono text-xs mb-3" style={{ color: 'var(--c-gold)' }}>{p.year} · {p.okn_status}</p>
@@ -42,7 +43,7 @@ export default function Projects() {
                 <p className="label-gold">Проект / {project.id}</p>
                 <button onClick={() => setSelected(null)} className="p-2 hover:text-[var(--c-gold)]" aria-label="Закрыть">✕</button>
               </div>
-              <img src={project.images.cover} alt={project.object} className="w-full h-64 object-cover" />
+              <img src={project.cover} alt={project.object} className="w-full h-64 object-cover" />
               <div className="p-8">
                 <h2 className="text-3xl md:text-4xl font-bold mb-3 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{project.object}</h2>
                 <p className="font-mono text-xs mb-2" style={{ color: 'var(--c-ash)' }}>{project.address}</p>
@@ -54,9 +55,9 @@ export default function Projects() {
                 <div className="mb-8">
                   <p className="label mb-4">До / Процесс / После</p>
                   <div className="grid grid-cols-3 gap-4">
-                    <img src={project.images.before} alt="До" className="w-full aspect-square object-cover" loading="lazy" />
-                    <img src={project.images.process} alt="Процесс" className="w-full aspect-square object-cover" loading="lazy" />
-                    <img src={project.images.after} alt="После" className="w-full aspect-square object-cover" loading="lazy" />
+                    <img src={project.before} alt="До" className="w-full aspect-square object-cover" loading="lazy" />
+                    <img src={project.process} alt="Процесс" className="w-full aspect-square object-cover" loading="lazy" />
+                    <img src={project.after} alt="После" className="w-full aspect-square object-cover" loading="lazy" />
                   </div>
                 </div>
                 <div className="p-6" style={{ backgroundColor: 'var(--c-iron)', borderLeft: '3px solid var(--c-gold)' }}>

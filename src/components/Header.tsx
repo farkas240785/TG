@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
+  const { content } = useSiteContent();
   const navigate = useNavigate();
   const nav = [
     { to: '/catalog', label: 'Каталог' },
@@ -43,7 +45,7 @@ export default function Header() {
               </div>
               <div>
                 <div className="text-lg font-semibold tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
-                <div className="label" style={{ fontSize: '10px' }}>Литейно-кузнечная мануфактура</div>
+                <div className="label" style={{ fontSize: '10px' }}>{content.header.subtitle}</div>
               </div>
             </Link>
             <nav className="hidden lg:flex items-center gap-8" aria-label="Основная навигация">

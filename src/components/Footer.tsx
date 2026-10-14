@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Footer() {
+  const { content } = useSiteContent();
   return (
     <footer className="no-print mt-32" style={{ backgroundColor: 'var(--c-void)', borderTop: '1px solid var(--c-rule-gold)' }}>
       <div className="gold-line"></div>
@@ -16,8 +18,8 @@ export default function Footer() {
               </svg>
               <div className="text-lg font-semibold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
             </div>
-            <p className="text-sm leading-relaxed max-w-sm mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Литейно-кузнечная мануфактура. Производство расположено в г. Чебоксары, Чувашская Республика.</p>
-            <div className="label-gold text-xs" style={{ color: 'var(--c-gold)' }}>ИНН 2130123456 · ОГРН 1022100123456</div>
+            <p className="text-sm leading-relaxed max-w-sm mb-8 font-light" style={{ color: 'var(--c-ash)' }}>{content.footer.description}</p>
+            <div className="label-gold text-xs" style={{ color: 'var(--c-gold)' }}>ИНН {content.requisites.inn} · ОГРН {content.requisites.ogrn}</div>
           </div>
           <div className="md:col-span-3">
             <p className="label-gold mb-6" style={{ color: 'var(--c-gold)' }}>Навигация</p>

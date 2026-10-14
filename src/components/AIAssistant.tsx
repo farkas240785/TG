@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../data/catalog';
+import { useSiteContent } from '../context/SiteContentContext';
 
 type Message = { id: number; role: 'assistant' | 'user'; content: React.ReactNode; };
 
 export default function AIAssistant() {
+  const { content } = useSiteContent();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: 0, role: 'assistant', content: (<><p>Здравствуйте! Меня зовут Алексей, я технолог мануфактуры «Тигель и Горн».</p><p className="mt-2">Работаю с реставрационной фурнитурой уже 12 лет. Помогу подобрать изделия для вашего проекта.</p><p className="mt-2">Расскажите, пожалуйста, над каким проектом вы сейчас работаете?</p></>) },
+    { id: 0, role: 'assistant', content: (<><p>{content.aiAssistant.greeting}</p></>) },
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);

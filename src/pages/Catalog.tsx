@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { catalogMeta, filterProducts } from '../data/catalog';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { content } = useSiteContent();
   const typeFilter = searchParams.get('type') || '';
   const filtered = useMemo(() => filterProducts({ type: typeFilter }), [typeFilter]);
   const updateFilter = (key: string, value: string) => { const params = new URLSearchParams(searchParams); if (value) params.set(key, value); else params.delete(key); setSearchParams(params); };

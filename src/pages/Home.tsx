@@ -9,7 +9,7 @@ export default function Home() {
     <div>
       <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--c-void)', minHeight: '60vh' }}>
         <div className="absolute inset-0">
-          <img src="https://image.qwenlm.ai/generated-images/3129222d-47e2-4cd6-b822-218f65dc69de/_result.png" alt="Мастерская" className="w-full h-full object-cover opacity-40" style={{ filter: 'brightness(0.6)' }} />
+          <img src={content.hero.heroImage} alt="Мастерская" className="w-full h-full object-cover opacity-40" style={{ filter: 'brightness(0.6)' }} />
         </div>
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(8, 7, 10, 0.97) 0%, rgba(8, 7, 10, 0.3) 100%)' }}></div>
         <div className="container relative z-10 py-24">
@@ -105,15 +105,15 @@ export default function Home() {
         <div className="container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="aspect-[4/3] overflow-hidden" style={{ backgroundColor: 'var(--c-iron)' }}>
-              <img src="https://image.qwenlm.ai/generated-images/c7a18472-26a7-497d-96f2-a74fc7adb402/_result.png" alt="Рабочее пространство" className="w-full h-full object-cover" loading="lazy" />
+              <img src={content.discuss.image} alt="Рабочее пространство" className="w-full h-full object-cover" loading="lazy" />
             </div>
             <div>
               <p className="label-gold mb-6">Начать работу</p>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Обсудить проект</h2>
-              <p className="text-lg mb-10 font-light" style={{ color: 'var(--c-ash)' }}>Оставьте заявку, и наш технолог свяжется с вами для обсуждения задачи.</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{content.discuss.title}</h2>
+              <p className="text-lg mb-10 font-light" style={{ color: 'var(--c-ash)' }}>{content.discuss.description}</p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/order" className="btn-forge">Рассчитать проект</Link>
-                <a href="tel:+78352123456" className="btn-outline-light">+7 (8352) 12-34-56</a>
+                <a href={`tel:${content.contacts.phone.replace(/\s/g, '')}`} className="btn-outline-light">{content.contacts.phone}</a>
               </div>
             </div>
           </div>

@@ -1,22 +1,31 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useAuth } from './AuthContext';
 
 export interface SiteContent {
-  hero: { subtitle: string; title: string; description: string; };
+  hero: { subtitle: string; title: string; description: string; heroImage: string; };
   stats: Array<{ num: string; label: string; sub: string; }>;
-  contacts: { city: string; region: string; address: string; phone: string; email: string; schedule: string; };
+  contacts: { city: string; region: string; address: string; phone: string; email: string; schedule: string; mapImage: string; };
   requisites: { name: string; inn: string; kpp: string; ogrn: string; };
   manifesto: { text: string; accent: string; };
   aboutBlocks: Array<{ title: string; heading: string; description: string; imageUrl: string; }>;
   steps: Array<{ step: string; title: string; desc: string; }>;
   thanks: Array<{ title: string; description: string; imageUrl: string; }>;
+  catalog: Array<{ id: string; title: string; type: string; material: string; alloy: string; weight_g: number; dimensions: string; coating: string; mounting: string; status: string; epoch: string; source: string; gost: string; description: string; image: string; }>;
+  projects: Array<{ id: string; object: string; address: string; okn_status: string; year: number; task: string; cover: string; before: string; process: string; after: string; cgiop_letter: string; }>;
+  discuss: { title: string; description: string; image: string; };
+  footer: { description: string; };
+  header: { subtitle: string; };
+  aiAssistant: { greeting: string; name: string; role: string; };
+  docs: { title: string; description: string; sections: Array<{ title: string; items: Array<{ title: string; desc: string; }>; }>; };
+  orderForm: { title: string; description: string; customerTypes: string[]; projectTypes: Array<{ value: string; label: string; }>; };
+  terms: { title: string; date: string; sections: Array<{ title: string; items: string[]; }>; };
 }
 
 const defaultContent: SiteContent = {
   hero: {
     subtitle: 'Литейно-кузнечная мануфактура · Чебоксары · с 2014 года',
     title: 'Историческая фурнитура. по нормативам КГИОП',
-    description: 'Научно обоснованное воссоздание утраченной фурнитуры для объектов культурного наследия.'
+    description: 'Научно обоснованное воссоздание утраченной фурнитуры для объектов культурного наследия.',
+    heroImage: 'https://image.qwenlm.ai/generated-images/3129222d-47e2-4cd6-b822-218f65dc69de/_result.png',
   },
   stats: [
     { num: '12+', label: 'лет специализации', sub: 'на объектах ОКН' },
@@ -31,17 +40,10 @@ const defaultContent: SiteContent = {
     phone: '+7 (8352) 12-34-56',
     email: 'info@tigeliGorn.ru',
     schedule: 'Пн–Пт: 09:00 – 18:00 MSK\nСб: по записи · Вс: выходной',
+    mapImage: 'https://image.qwenlm.ai/generated-images/04db9183-54ad-42be-912c-dfae7d8a8070/_result.png',
   },
-  requisites: {
-    name: 'ООО «Тигель и Горн»',
-    inn: '2130123456',
-    kpp: '213001001',
-    ogrn: '1022100123456',
-  },
-  manifesto: {
-    text: 'Мы воссоздаём утраченное, опираясь на архив, металлургию и ремесло.',
-    accent: 'Не стилизуем — а восстанавливаем.',
-  },
+  requisites: { name: 'ООО «Тигель и Горн»', inn: '2130123456', kpp: '213001001', ogrn: '1022100123456' },
+  manifesto: { text: 'Мы воссоздаём утраченное, опираясь на архив, металлургию и ремесло.', accent: 'Не стилизуем — а восстанавливаем.' },
   aboutBlocks: [
     { title: 'Тигель', heading: 'Металлургия и точность', description: 'Контроль химического состава каждой партии. Латунь Л63 по ГОСТ 17711-93, ЛС59-1, стали Ст3, ЧХН. Спектрометрический анализ, паспорт на каждую партию.', imageUrl: 'https://image.qwenlm.ai/generated-images/d4283e19-f164-4ae3-91c8-14cca370592f/_result.png' },
     { title: 'Горн', heading: 'Ремесло и форма', description: 'Художественная ковка, ручная формовка, патинирование по историческим рецептурам. Следы ремесла — доказательство подлинности.', imageUrl: 'https://image.qwenlm.ai/generated-images/a8ab9a65-9ede-41a8-9f37-bd5756f44b1c/_result.png' },
@@ -60,6 +62,38 @@ const defaultContent: SiteContent = {
     { title: 'Государственный Эрмитаж', description: 'За профессиональное воссоздание фурнитуры', imageUrl: 'https://image.qwenlm.ai/generated-images/5ad288e5-2b88-45f6-b81a-b7d65f664b2b/_result.png' },
     { title: 'Союз реставраторов России', description: 'За вклад в сохранение наследия', imageUrl: 'https://image.qwenlm.ai/generated-images/7ce33533-dcc8-4755-a0cf-214eda8b7362/_result.png' },
   ],
+  catalog: [
+    { id: 'TG-A-014', title: 'Ручка-скоба ампирная', type: 'handles', material: 'casting', alloy: 'Л63', weight_g: 142, dimensions: '180×45×28 мм', coating: 'Восковая патина', mounting: 'Шпилька М6', status: 'approved', epoch: 'Ампир, 1810–1820-е гг.', source: 'РГИА', gost: 'ГОСТ Р 55567-2013', description: 'Реплика дверной ручки-скобы в стиле ампир.', image: 'https://image.qwenlm.ai/generated-images/084b6f4b-8996-499b-a24c-4d93eea8b2bb/_result.png' },
+    { id: 'TG-A-015', title: 'Ручка-кноб барочная', type: 'handles', material: 'casting', alloy: 'ЛС59-1', weight_g: 98, dimensions: 'Ø52×68 мм', coating: 'Натуральная латунь', mounting: 'Винт М5', status: 'approved', epoch: 'Барокко, 1740–1760-е гг.', source: 'ГАРФ', gost: 'ГОСТ Р 55567-2013', description: 'Кноб барочного типа.', image: 'https://image.qwenlm.ai/generated-images/0da49803-c284-4bf9-a544-3ff3002baec6/_result.png' },
+    { id: 'TG-K-008', title: 'Петля карточная', type: 'hinges', material: 'forging', alloy: 'Ст3', weight_g: 340, dimensions: '220×80×6 мм', coating: 'Воронение', mounting: 'Глухарь', status: 'prototype', epoch: 'Петровское барокко', source: 'Эрмитаж', gost: 'ГОСТ Р 55567-2013', description: 'Кованая накладная петля.', image: 'https://image.qwenlm.ai/generated-images/64620116-25bd-4bf8-9305-c4b3a8baa679/_result.png' },
+    { id: 'TG-S-003', title: 'Шпингалет латунный', type: 'espagnolettes', material: 'casting', alloy: 'Л63', weight_g: 210, dimensions: '280×35×18 мм', coating: 'Патинирование', mounting: 'Шурупы', status: 'approved', epoch: 'Классицизм', source: 'Обмеры 2022', gost: 'ГОСТ Р 55567-2013', description: 'Шпингалет оконный.', image: 'https://image.qwenlm.ai/generated-images/1849725d-a49f-4f00-8aee-d5698af41398/_result.png' },
+    { id: 'TG-N-011', title: 'Наличник дверной', type: 'architraves', material: 'casting', alloy: 'Л63', weight_g: 1850, dimensions: '2100×120×25 мм', coating: 'Полировка', mounting: 'Клей', status: 'custom', epoch: 'Екатерининский классицизм', source: 'Обследование 2023', gost: 'ГОСТ Р 55567-2013', description: 'Наборный наличник.', image: 'https://image.qwenlm.ai/generated-images/cf5e9c67-bb6b-4608-9e84-a995a1b10af8/_result.png' },
+    { id: 'TG-R-005', title: 'Решётка оконная', type: 'grilles', material: 'forging', alloy: 'Ст3', weight_g: 12400, dimensions: '1200×800×20 мм', coating: 'Покраска', mounting: 'Закладные', status: 'approved', epoch: 'Ампир', source: 'РГИА', gost: 'ГОСТ Р 55567-2013', description: 'Кованая решётка.', image: 'https://image.qwenlm.ai/generated-images/999490c9-9099-42bd-aa26-70facf19bc0f/_result.png' },
+    { id: 'TG-P-007', title: 'Накладка замочная', type: 'plates', material: 'casting', alloy: 'Л63', weight_g: 68, dimensions: '130×45×4 мм', coating: 'Патина', mounting: 'Штифты', status: 'approved', epoch: 'Ампир', source: 'РГИА', gost: 'ГОСТ Р 55567-2013', description: 'Прорезная накладка.', image: 'https://image.qwenlm.ai/generated-images/3cf26d66-83c7-432c-859d-e0c74062ba93/_result.png' },
+    { id: 'TG-B-002', title: 'Скоба дверная', type: 'brackets', material: 'combined', alloy: 'Л63 + Ст3', weight_g: 890, dimensions: '350×80×45 мм', coating: 'Полировка', mounting: 'Шпилька М10', status: 'prototype', epoch: 'Эклектика', source: 'Обмеры', gost: 'ГОСТ Р 55567-2013', description: 'Комбинированная скоба.', image: 'https://image.qwenlm.ai/generated-images/3cf26d66-83c7-432c-859d-e0c74062ba93/_result.png' },
+  ],
+  projects: [
+    { id: 'PRJ-001', object: 'Особняк Салтыковых', address: 'СПб, наб. р. Мойки, 28', okn_status: 'ОКН федерального значения', year: 2025, task: 'Воссоздание 48 ручек и 24 шпингалетов', cover: 'https://image.qwenlm.ai/generated-images/32c5f315-47db-4dc6-b5f9-f3fd9dcae48f/_result.png', before: 'https://image.qwenlm.ai/generated-images/f42370df-899c-4ac9-ac6b-c0cc25d4ee81/_result.png', process: 'https://image.qwenlm.ai/generated-images/e2053948-8d35-4956-8a97-bf5772758405/_result.png', after: 'https://image.qwenlm.ai/generated-images/7467c9f8-10f9-461e-b8c7-7e78775a99ac/_result.png', cgiop_letter: '№ 03-28/1147' },
+    { id: 'PRJ-002', object: 'Дворец Разумовского', address: 'СПб, Адмиралтейский пр., 6', okn_status: 'ОКН федерального значения', year: 2024, task: 'Изготовление 12 решёток и 36 петель', cover: 'https://image.qwenlm.ai/generated-images/b05f71f1-0141-4c98-b4ad-c1674beddc60/_result.png', before: 'https://image.qwenlm.ai/generated-images/ad1e6faa-fe63-43eb-99ba-9b7c017f0307/_result.png', process: 'https://image.qwenlm.ai/generated-images/2ead7818-5539-493c-8c8a-83c34e2df11e/_result.png', after: 'https://image.qwenlm.ai/generated-images/5c511357-3e8e-409b-a91a-1214a3a99f6a/_result.png', cgiop_letter: '№ 03-14/0892' },
+    { id: 'PRJ-003', object: 'Усадьба Богословка', address: 'Ленинградская обл.', okn_status: 'ОКН регионального значения', year: 2024, task: 'Оснащение церкви: 64 изделия', cover: 'https://image.qwenlm.ai/generated-images/cbd86b19-ca63-4c1b-92cc-e7d3bc636e67/_result.png', before: 'https://image.qwenlm.ai/generated-images/839b70ec-32e9-4fd6-ac87-d6e58ce01bc2/_result.png', process: 'https://image.qwenlm.ai/generated-images/47563109-b9c8-47d8-8631-9573e82e815e/_result.png', after: 'https://image.qwenlm.ai/generated-images/787cbeed-37b1-4b8b-8d0f-339b4e745550/_result.png', cgiop_letter: '№ 02-41/0567' },
+    { id: 'PRJ-004', object: 'Аничков дворец', address: 'СПб, Невский пр., 39', okn_status: 'ОКН федерального значения', year: 2023, task: 'Реставрация каминных решёток', cover: 'https://image.qwenlm.ai/generated-images/da07de48-93bc-4ee4-87be-51b78c32e1a7/_result.png', before: 'https://image.qwenlm.ai/generated-images/7a99be2a-ebea-48c2-919d-be295d8010c7/_result.png', process: 'https://image.qwenlm.ai/generated-images/7cea931f-451c-4da9-9779-cd09d6b1e076/_result.png', after: 'https://image.qwenlm.ai/generated-images/7419af5f-82bd-4285-ba6c-727232a1934c/_result.png', cgiop_letter: '№ 03-07/0234' },
+  ],
+  discuss: { title: 'Обсудить проект', description: 'Оставьте заявку, и наш технолог свяжется с вами для обсуждения задачи.', image: 'https://image.qwenlm.ai/generated-images/c7a18472-26a7-497d-96f2-a74fc7adb402/_result.png' },
+  footer: { description: 'Литейно-кузнечная мануфактура. Производство расположено в г. Чебоксары, Чувашская Республика.' },
+  header: { subtitle: 'Литейно-кузнечная мануфактура' },
+  aiAssistant: { greeting: 'Здравствуйте! Меня зовут Алексей, я технолог мануфактуры «Тигель и Горн». Работаю с реставрационной фурнитурой уже 12 лет. Помогу подобрать изделия для вашего проекта.', name: 'Алексей', role: 'технолог мануфактуры' },
+  docs: {
+    title: 'Документация',
+    description: 'ГОСТы, регламенты, образцы паспортов и методические материалы.',
+    sections: [
+      { title: 'ГОСТы и регламенты', items: [{ title: 'ГОСТ Р 55567-2013', desc: 'Реставрация памятников наследия.' }, { title: 'Р-13.19.15', desc: 'Руководство по реставрации металлических конструкций.' }, { title: 'ГОСТ 17711-93', desc: 'Сплавы медно-цинковые (латуни) для отливок.' }, { title: 'Регламент КГИОП СПб', desc: 'Порядок согласования проектной документации.' }] },
+      { title: 'Образцы паспортов', items: [{ title: 'Паспорт сплава (латунь Л63)', desc: 'Результаты спектрометрического анализа.' }, { title: 'Протокол патинирования', desc: 'Состав раствора, время выдержки, температура.' }, { title: 'Паспорт изделия', desc: 'Артикул, ТТХ, привязка к прототипу.' }] },
+      { title: 'Методические материалы', items: [{ title: 'Методика натурного обследования', desc: 'Порядок обмеров и описания фурнитуры.' }, { title: 'Технология восковой модели', desc: 'Изготовление восковой модели для литья.' }, { title: 'Рецептуры патинирования', desc: 'Исторические и современные составы.' }] },
+      { title: 'FAQ по согласованиям', items: [{ title: 'Когда требуется согласование с КГИОП?', desc: 'Для любых работ на объектах культурного наследия.' }, { title: 'Какие документы нужны для подачи в КГИОП?', desc: 'Задание, справка, чертежи, проект реставрации.' }, { title: 'Сколько времени занимает согласование?', desc: 'Стандартный срок — 30 рабочих дней.' }] },
+    ],
+  },
+  orderForm: { title: 'Заказать расчёт', description: 'Заполните форму — подготовим расчёт стоимости и сроков.', customerTypes: ['ГАП', 'Реставратор', 'Генподрядчик', 'Другое'], projectTypes: [{ value: 'restoration', label: 'Реставрация ОКН' }, { value: 'historic', label: 'Новое строительство в исторической среде' }, { value: 'private', label: 'Частный заказ' }] },
+  terms: { title: 'Пользовательское соглашение', date: '1 января 2026 года', sections: [{ title: '1. Общие положения', items: ['Настоящее Соглашение регулирует отношения между ООО «Тигель и Горн» и пользователями сайта.', 'Сайт предназначен для профессиональной аудитории.'] }, { title: '2. Регистрация', items: ['Для доступа к личному кабинету необходимо указать достоверные данные организации.', 'Пользователь несёт ответственность за сохранность учётных данных.'] }, { title: '3. Обработка данных', items: ['Регистрируясь, Пользователь даёт согласие на обработку персональных данных в соответствии с ФЗ-152.', 'Мануфактура не передаёт данные третьим лицам.'] }] },
 };
 
 interface SiteContentContextType {
