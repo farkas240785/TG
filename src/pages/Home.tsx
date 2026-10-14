@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import { projects, catalogMeta } from '../data/catalog';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Home() {
+  const { content } = useSiteContent();
+  
   return (
     <div>
       <section className="relative overflow-hidden" style={{ backgroundColor: 'var(--c-void)', minHeight: '60vh' }}>
@@ -11,12 +14,12 @@ export default function Home() {
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(8, 7, 10, 0.97) 0%, rgba(8, 7, 10, 0.3) 100%)' }}></div>
         <div className="container relative z-10 py-24">
           <div className="max-w-4xl">
-            <p className="label-gold mb-6">Литейно-кузнечная мануфактура · Чебоксары · с 2014 года</p>
+            <p className="label-gold mb-6">{content.hero.subtitle}</p>
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6" style={{ fontFamily: 'var(--f-display)' }}>
-              <span className="forge-text">Историческая фурнитура.</span><br/>
-              <span style={{ color: 'var(--c-parchment)' }}>по нормативам КГИОП</span>
+              <span className="forge-text">{content.hero.title.split('.')[0]}.</span><br/>
+              <span style={{ color: 'var(--c-parchment)' }}>{content.hero.title.split('.')[1]}</span>
             </h1>
-            <p className="text-lg mb-8 max-w-2xl font-light" style={{ color: 'var(--c-ash)' }}>Научно обоснованное воссоздание утраченной фурнитуры для объектов культурного наследия.</p>
+            <p className="text-lg mb-8 max-w-2xl font-light" style={{ color: 'var(--c-ash)' }}>{content.hero.description}</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/catalog" className="btn-forge">Смотреть каталог</Link>
               <Link to="/order" className="btn-outline-light">Рассчитать проект</Link>
@@ -28,7 +31,7 @@ export default function Home() {
       <section style={{ backgroundColor: 'var(--c-charcoal)', borderTop: '1px solid var(--c-rule-gold)', borderBottom: '1px solid var(--c-rule-gold)' }}>
         <div className="container py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[{ num: '12+', label: 'лет специализации', sub: 'на объектах ОКН' }, { num: '47', label: 'объектов', sub: 'согласовано с КГИОП' }, { num: '4', label: 'марки сплавов', sub: 'Л63, ЛС59, Ст3, ЧХН' }, { num: '100%', label: 'спектрометрия', sub: 'каждой партии' }].map((item, i) => (
+            {content.stats.map((item, i) => (
               <div key={i} className="text-center md:text-left">
                 <div className="text-5xl md:text-6xl font-bold mb-3 tracking-tight forge-text" style={{ fontFamily: 'var(--f-display)' }}>{item.num}</div>
                 <p className="text-sm font-medium mb-1" style={{ color: 'var(--c-parchment)' }}>{item.label}</p>
@@ -42,28 +45,19 @@ export default function Home() {
       <section className="py-32" style={{ backgroundColor: 'var(--c-coal)' }}>
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <article className="relative overflow-hidden group" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
-              <div className="aspect-[16/10] overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/d4283e19-f164-4ae3-91c8-14cca370592f/_result.png" alt="Литьё латуни" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-              </div>
-              <div className="p-8 md:p-10">
-                <p className="label-gold mb-4">I. Тигель</p>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Металлургия<br />&amp; точность</h2>
-                <p className="text-base leading-relaxed mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Контроль химического состава каждой партии. Латунь Л63 по ГОСТ 17711-93.</p>
-                <Link to="/about" className="link-forge">Подробнее →</Link>
-              </div>
-            </article>
-            <article className="relative overflow-hidden group" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
-              <div className="aspect-[16/10] overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/a8ab9a65-9ede-41a8-9f37-bd5756f44b1c/_result.png" alt="Кузнечный горн" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-              </div>
-              <div className="p-8 md:p-10">
-                <p className="label-gold mb-4">II. Горн</p>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Ремесло<br />&amp; форма</h2>
-                <p className="text-base leading-relaxed mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Художественная ковка, ручная формовка, патинирование по историческим рецептурам.</p>
-                <Link to="/about" className="link-forge">Подробнее →</Link>
-              </div>
-            </article>
+            {content.aboutBlocks.map((block, i) => (
+              <article key={i} className="relative overflow-hidden group" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img src={block.imageUrl} alt={block.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                </div>
+                <div className="p-8 md:p-10">
+                  <p className="label-gold mb-4">{i === 0 ? 'I.' : 'II.'} {block.title}</p>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{block.heading}</h2>
+                  <p className="text-base leading-relaxed mb-8 font-light" style={{ color: 'var(--c-ash)' }}>{block.description}</p>
+                  <Link to="/about" className="link-forge">Подробнее →</Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -133,27 +127,15 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Благодарственные письма</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card-dark p-8">
-              <div className="aspect-[3/4] mb-6 overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/9495b5d1-1829-449b-8ebd-69c94dec11f4/_result.png" alt="Письмо КГИОП" className="w-full h-full object-cover" loading="lazy" />
+            {content.thanks.map((t, i) => (
+              <div key={i} className="card-dark p-8">
+                <div className="aspect-[3/4] mb-6 overflow-hidden">
+                  <img src={t.imageUrl} alt={t.title} className="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{t.title}</h3>
+                <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>{t.description}</p>
               </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>КГИОП Санкт-Петербурга</h3>
-              <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За высокое качество реставрационных работ</p>
-            </div>
-            <div className="card-dark p-8">
-              <div className="aspect-[3/4] mb-6 overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/5ad288e5-2b88-45f6-b81a-b7d65f664b2b/_result.png" alt="Письмо Эрмитажа" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Государственный Эрмитаж</h3>
-              <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За профессиональное воссоздание фурнитуры</p>
-            </div>
-            <div className="card-dark p-8">
-              <div className="aspect-[3/4] mb-6 overflow-hidden">
-                <img src="https://image.qwenlm.ai/generated-images/7ce33533-dcc8-4755-a0cf-214eda8b7362/_result.png" alt="Письмо Союза реставраторов" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Союз реставраторов России</h3>
-              <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>За вклад в сохранение наследия</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

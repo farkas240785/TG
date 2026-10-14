@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function Contacts() {
   const [submitted, setSubmitted] = useState(false);
   const [agreed, setAgreed] = useState(false);
+  const { content } = useSiteContent();
 
   return (
     <div>
@@ -46,26 +48,27 @@ export default function Contacts() {
             <div className="space-y-10">
               <div>
                 <p className="label-gold mb-4">Адрес производства</p>
-                <p className="text-2xl font-medium mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Чувашская Республика</p>
-                <p className="font-light" style={{ color: 'var(--c-ash)' }}>428000, г. Чебоксары<br />пр-кт Мира, д. 1</p>
+                <p className="text-2xl font-medium mb-2" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{content.contacts.city}</p>
+                <p className="font-light" style={{ color: 'var(--c-ash)' }}>{content.contacts.address}</p>
               </div>
               <div>
                 <p className="label-gold mb-4">Связь</p>
-                <a href="tel:+78352123456" className="block text-3xl font-bold mb-3 hover:text-[var(--c-gold)] transition-colors" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>+7 (8352) 12-34-56</a>
-                <a href="mailto:info@tigeliGorn.ru" className="block font-light hover:text-[var(--c-gold)] transition-colors">info@tigeliGorn.ru</a>
+                <a href={`tel:${content.contacts.phone.replace(/\s/g, '')}`} className="block text-3xl font-bold mb-3 hover:text-[var(--c-gold)] transition-colors" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{content.contacts.phone}</a>
+                <a href={`mailto:${content.contacts.email}`} className="block font-light hover:text-[var(--c-gold)] transition-colors">{content.contacts.email}</a>
               </div>
               <div>
                 <p className="label-gold mb-4">Часы работы</p>
-                <p className="font-medium mb-1">Пн–Пт: 09:00 – 18:00 MSK</p>
-                <p className="text-sm font-light" style={{ color: 'var(--c-ash)' }}>Сб: по записи · Вс: выходной</p>
+                {content.contacts.schedule.split('\n').map((line, i) => (
+                  <p key={i} className={i === 0 ? 'font-medium mb-1' : 'text-sm font-light'} style={{ color: i === 0 ? 'var(--c-parchment)' : 'var(--c-ash)' }}>{line}</p>
+                ))}
               </div>
               <div className="p-8" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
                 <p className="label-gold mb-4">Реквизиты</p>
                 <div className="space-y-2 font-mono text-xs">
-                  <p>ООО «Тигель и Горн»</p>
-                  <p>ИНН 2130123456</p>
-                  <p>КПП 213001001</p>
-                  <p>ОГРН 1022100123456</p>
+                  <p>{content.requisites.name}</p>
+                  <p>ИНН {content.requisites.inn}</p>
+                  <p>КПП {content.requisites.kpp}</p>
+                  <p>ОГРН {content.requisites.ogrn}</p>
                 </div>
               </div>
               <div className="overflow-hidden" style={{ aspectRatio: '16/9', backgroundColor: 'var(--c-charcoal)' }}>

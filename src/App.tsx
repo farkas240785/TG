@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { SiteContentProvider } from './context/SiteContentContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AIAssistant from './components/AIAssistant';
@@ -22,10 +23,12 @@ import Configurator from './pages/Configurator';
 import ObjectFolder from './pages/ObjectFolder';
 import Finance from './pages/Finance';
 import CMS from './pages/CMS';
+import Admin from './pages/Admin';
 
 function App() {
   return (
     <AuthProvider>
+      <SiteContentProvider>
       <Router>
         <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--c-coal)' }}>
           <Header />
@@ -49,12 +52,14 @@ function App() {
               <Route path="/dashboard/object-folder" element={<ProtectedRoute><ObjectFolder /></ProtectedRoute>} />
               <Route path="/dashboard/finance" element={<ProtectedRoute><Finance /></ProtectedRoute>} />
               <Route path="/dashboard/cms" element={<ProtectedRoute><CMS /></ProtectedRoute>} />
+              <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
             </Routes>
           </main>
           <Footer />
           <AIAssistant />
         </div>
       </Router>
+      </SiteContentProvider>
     </AuthProvider>
   );
 }

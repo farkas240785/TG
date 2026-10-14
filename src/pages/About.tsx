@@ -1,15 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useSiteContent } from '../context/SiteContentContext';
 
 export default function About() {
-  const timeline = [
-    { step: 'I', title: 'Архивное исследование', desc: 'Поиск исторических чертежей в РГИА, ГАРФ, Эрмитаже.' },
-    { step: 'II', title: 'Натурное обследование', desc: 'Обмеры, фотофиксация, определение марки сплава.' },
-    { step: 'III', title: '3D-модель / чертёж', desc: 'Создание точной модели на основе архивных данных.' },
-    { step: 'IV', title: 'Изготовление прототипа', desc: 'Проверка соответствия историческому оригиналу.' },
-    { step: 'V', title: 'Согласование с КГИОП', desc: 'Подготовка документов, получение заключения.' },
-    { step: 'VI', title: 'Производство партии', desc: 'Контроль каждой единицы, спектрометрия.' },
-    { step: 'VII', title: 'Паспортизация и монтаж', desc: 'Оформление паспортов, шеф-монтаж.' }
-  ];
+  const { content } = useSiteContent();
 
   return (
     <div>
@@ -18,7 +11,7 @@ export default function About() {
         <div className="container relative z-10">
           <p className="label-gold mb-8">Манифест</p>
           <p className="text-3xl md:text-5xl leading-tight font-medium max-w-4xl tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
-            Мы воссоздаём утраченное, опираясь на архив, металлургию и ремесло. <span style={{ color: 'var(--c-gold)' }}>Не стилизуем — а восстанавливаем.</span>
+            {content.manifesto.text} <span style={{ color: 'var(--c-gold)' }}>{content.manifesto.accent}</span>
           </p>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-1 forge-gradient"></div>
@@ -27,22 +20,16 @@ export default function About() {
       <section className="py-24 md:py-32" style={{ backgroundColor: 'var(--c-coal)' }}>
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-8 md:p-12" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
-              <p className="label-gold mb-6">Тигель</p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Металлургия и точность</h2>
-              <p className="leading-relaxed mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Контроль химического состава каждой партии. Латунь Л63 по ГОСТ 17711-93, ЛС59-1, стали Ст3, ЧХН. Спектрометрический анализ, паспорт на каждую партию.</p>
-              <div className="aspect-video" style={{ backgroundColor: 'var(--c-iron)' }}>
-                <img src="https://image.qwenlm.ai/generated-images/c749bbbd-170a-4de6-9e6a-ca8a0510e601/_result.png" alt="Металлургическая лаборатория" className="w-full h-full object-cover" loading="lazy" />
+            {content.aboutBlocks.map((block, i) => (
+              <div key={i} className="p-8 md:p-12" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                <p className="label-gold mb-6">{block.title}</p>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>{block.heading}</h2>
+                <p className="leading-relaxed mb-8 font-light" style={{ color: 'var(--c-ash)' }}>{block.description}</p>
+                <div className="aspect-video" style={{ backgroundColor: 'var(--c-iron)' }}>
+                  <img src={block.imageUrl} alt={block.title} className="w-full h-full object-cover" loading="lazy" />
+                </div>
               </div>
-            </div>
-            <div className="p-8 md:p-12" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
-              <p className="label-gold mb-6">Горн</p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Ремесло и форма</h2>
-              <p className="leading-relaxed mb-8 font-light" style={{ color: 'var(--c-ash)' }}>Художественная ковка, ручная формовка, патинирование по историческим рецептурам. Следы ремесла — доказательство подлинности.</p>
-              <div className="aspect-video" style={{ backgroundColor: 'var(--c-iron)' }}>
-                <img src="https://image.qwenlm.ai/generated-images/a8ab9a65-9ede-41a8-9f37-bd5756f44b1c/_result.png" alt="Кузнечный горн" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -52,7 +39,7 @@ export default function About() {
           <p className="label-gold mb-6">Методология</p>
           <h2 className="text-4xl md:text-5xl font-bold mb-16 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Семь шагов</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
-            {timeline.map((step, i) => (
+            {content.steps.map((step, i) => (
               <div key={i} className="flex gap-8 py-8 group" style={{ borderBottom: '1px solid var(--c-rule-light)' }}>
                 <div className="text-3xl font-bold shrink-0 forge-text" style={{ fontFamily: 'var(--f-display)' }}>{step.step}</div>
                 <div>
