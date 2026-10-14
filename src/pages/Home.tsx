@@ -25,6 +25,20 @@ export default function Home() {
         </div>
       </section>
 
+      <section style={{ backgroundColor: 'var(--c-charcoal)', borderTop: '1px solid var(--c-rule-gold)', borderBottom: '1px solid var(--c-rule-gold)' }}>
+        <div className="container py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[{ num: '12+', label: 'лет специализации', sub: 'на объектах ОКН' }, { num: '47', label: 'объектов', sub: 'согласовано с КГИОП' }, { num: '4', label: 'марки сплавов', sub: 'Л63, ЛС59, Ст3, ЧХН' }, { num: '100%', label: 'спектрометрия', sub: 'каждой партии' }].map((item, i) => (
+              <div key={i} className="text-center md:text-left">
+                <div className="text-5xl md:text-6xl font-bold mb-3 tracking-tight forge-text" style={{ fontFamily: 'var(--f-display)' }}>{item.num}</div>
+                <p className="text-sm font-medium mb-1" style={{ color: 'var(--c-parchment)' }}>{item.label}</p>
+                <p className="label text-xs">{item.sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-32" style={{ backgroundColor: 'var(--c-coal)' }}>
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

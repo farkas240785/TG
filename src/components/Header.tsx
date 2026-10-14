@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <>
       <a href="#main" className="skip-link">К содержанию</a>
-      <header className="no-print sticky top-0 z-50" style={{ backgroundColor: 'rgba(12, 11, 14, 0.95)', backdropFilter: 'blur(12px)', borderBottom: '1px solid var(--c-rule-light)' }}>
+      <header className="no-print sticky top-0 z-50" style={{ backgroundColor: 'rgba(12, 11, 14, 0.95)', backdropFilter: 'blur(12px)' }}>
         <div className="container">
           <div className="flex items-center justify-between py-5 gap-6">
             <Link to="/" className="flex items-center gap-4 shrink-0 group">
@@ -64,6 +64,7 @@ export default function Header() {
             </div>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 right-0 h-1 forge-gradient"></div>
       </header>
       {menuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden no-print overflow-y-auto" style={{ backgroundColor: 'var(--c-coal)' }}>
