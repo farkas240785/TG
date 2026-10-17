@@ -68,7 +68,7 @@ export default function ImageUploader({ value, onChange, label = 'Изображ
     }
   };
 
-  const isDataUrl = value.startsWith('');
+  const isDataUrl = value.startsWith('data:');
 
   return (
     <div className="space-y-3">
