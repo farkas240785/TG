@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useSiteContent } from '../context/SiteContentContext';
 import { brassCategories, forgedCategories } from '../data/catalog';
+import ImageUploader from '../components/ImageUploader';
 
 type Tab = 'hero' | 'stats' | 'contacts' | 'requisites' | 'manifesto' | 'about' | 'steps' | 'thanks' | 'catalog' | 'projects' | 'discuss' | 'footer' | 'header' | 'aiAssistant' | 'docs' | 'orderForm' | 'terms';
 
@@ -163,10 +164,217 @@ export default function Admin() {
             </div>
           )}
 
-          {(activeTab === 'contacts' || activeTab === 'requisites' || activeTab === 'manifesto' || activeTab === 'about' || activeTab === 'steps' || activeTab === 'thanks' || activeTab === 'projects' || activeTab === 'discuss' || activeTab === 'footer' || activeTab === 'header' || activeTab === 'aiAssistant' || activeTab === 'docs' || activeTab === 'orderForm' || activeTab === 'terms') && (
-            <div className="p-8 text-center" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
-              <p className="text-2xl mb-4" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Раздел "{tabs.find(t => t.id === activeTab)?.label}"</p>
-              <p className="text-sm" style={{ color: 'var(--c-ash)' }}>Функционал редактирования этого раздела доступен в полной версии панели управления.</p>
+          {activeTab === 'contacts' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Контактная информация</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div><label className="label block mb-2">Регион</label><input type="text" value={content.contacts.city} onChange={(e) => updateContent('contacts', { ...content.contacts, city: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div><label className="label block mb-2">Город</label><input type="text" value={content.contacts.region} onChange={(e) => updateContent('contacts', { ...content.contacts, region: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div className="md:col-span-2"><label className="label block mb-2">Адрес</label><input type="text" value={content.contacts.address} onChange={(e) => updateContent('contacts', { ...content.contacts, address: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div><label className="label block mb-2">Телефон</label><input type="text" value={content.contacts.phone} onChange={(e) => updateContent('contacts', { ...content.contacts, phone: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div><label className="label block mb-2">Email</label><input type="text" value={content.contacts.email} onChange={(e) => updateContent('contacts', { ...content.contacts, email: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div className="md:col-span-2"><label className="label block mb-2">Часы работы</label><textarea rows={3} value={content.contacts.schedule} onChange={(e) => updateContent('contacts', { ...content.contacts, schedule: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+                <div className="md:col-span-2">
+                  <ImageUploader
+                    value={content.contacts.mapImage}
+                    onChange={(value) => updateContent('contacts', { ...content.contacts, mapImage: value })}
+                    label="Изображение карты"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'requisites' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Реквизиты организации</h2>
+              <div><label className="label block mb-2">Название</label><input type="text" value={content.requisites.name} onChange={(e) => updateContent('requisites', { ...content.requisites, name: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div><label className="label block mb-2">ИНН</label><input type="text" value={content.requisites.inn} onChange={(e) => updateContent('requisites', { ...content.requisites, inn: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div><label className="label block mb-2">КПП</label><input type="text" value={content.requisites.kpp} onChange={(e) => updateContent('requisites', { ...content.requisites, kpp: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                <div><label className="label block mb-2">ОГРН</label><input type="text" value={content.requisites.ogrn} onChange={(e) => updateContent('requisites', { ...content.requisites, ogrn: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'manifesto' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Манифест</h2>
+              <div><label className="label block mb-2">Основной текст</label><textarea rows={3} value={content.manifesto.text} onChange={(e) => updateContent('manifesto', { ...content.manifesto, text: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Акцент (золотой цвет)</label><input type="text" value={content.manifesto.accent} onChange={(e) => updateContent('manifesto', { ...content.manifesto, accent: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+            </div>
+          )}
+
+          {activeTab === 'about' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Блоки "Тигель" и "Горн"</h2>
+              {content.aboutBlocks.map((block, i) => (
+                <div key={i} className="p-6" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                  <p className="label-gold mb-4">Блок: {block.title}</p>
+                  <div className="space-y-4">
+                    <div><label className="label block mb-2">Заголовок</label><input type="text" value={block.heading} onChange={(e) => { const b = [...content.aboutBlocks]; b[i] = { ...b[i], heading: e.target.value }; updateContent('aboutBlocks', b); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div><label className="label block mb-2">Описание</label><textarea rows={3} value={block.description} onChange={(e) => { const b = [...content.aboutBlocks]; b[i] = { ...b[i], description: e.target.value }; updateContent('aboutBlocks', b); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+                    <ImageUploader
+                      value={block.imageUrl}
+                      onChange={(value) => { const b = [...content.aboutBlocks]; b[i] = { ...b[i], imageUrl: value }; updateContent('aboutBlocks', b); }}
+                      label={`Изображение блока "${block.title}"`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'steps' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Методология (7 шагов)</h2>
+              {content.steps.map((step, i) => (
+                <div key={i} className="p-6" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+                    <div className="md:col-span-1"><label className="label block mb-2">№</label><input type="text" value={step.step} onChange={(e) => { const s = [...content.steps]; s[i] = { ...s[i], step: e.target.value }; updateContent('steps', s); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div className="md:col-span-4"><label className="label block mb-2">Название</label><input type="text" value={step.title} onChange={(e) => { const s = [...content.steps]; s[i] = { ...s[i], title: e.target.value }; updateContent('steps', s); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div className="md:col-span-7"><label className="label block mb-2">Описание</label><input type="text" value={step.desc} onChange={(e) => { const s = [...content.steps]; s[i] = { ...s[i], desc: e.target.value }; updateContent('steps', s); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'thanks' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Благодарственные письма</h2>
+              {content.thanks.map((t, i) => (
+                <div key={i} className="p-6" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                  <div className="space-y-4">
+                    <div><label className="label block mb-2">Название организации</label><input type="text" value={t.title} onChange={(e) => { const th = [...content.thanks]; th[i] = { ...th[i], title: e.target.value }; updateContent('thanks', th); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div><label className="label block mb-2">Описание</label><input type="text" value={t.description} onChange={(e) => { const th = [...content.thanks]; th[i] = { ...th[i], description: e.target.value }; updateContent('thanks', th); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <ImageUploader
+                      value={t.imageUrl}
+                      onChange={(value) => { const th = [...content.thanks]; th[i] = { ...th[i], imageUrl: value }; updateContent('thanks', th); }}
+                      label={`Изображение письма от "${t.title}"`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'projects' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Проекты</h2>
+              {content.projects.map((proj, i) => (
+                <div key={i} className="p-6" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                  <p className="label-gold mb-4">Проект {i + 1}: {proj.id}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label className="label block mb-2">Объект</label><input type="text" value={proj.object} onChange={(e) => { const p = [...content.projects]; p[i] = { ...p[i], object: e.target.value }; updateContent('projects', p); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div><label className="label block mb-2">Адрес</label><input type="text" value={proj.address} onChange={(e) => { const p = [...content.projects]; p[i] = { ...p[i], address: e.target.value }; updateContent('projects', p); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div><label className="label block mb-2">Год</label><input type="number" value={proj.year} onChange={(e) => { const p = [...content.projects]; p[i] = { ...p[i], year: Number(e.target.value) }; updateContent('projects', p); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div><label className="label block mb-2">Письмо КГИОП</label><input type="text" value={proj.cgiop_letter} onChange={(e) => { const p = [...content.projects]; p[i] = { ...p[i], cgiop_letter: e.target.value }; updateContent('projects', p); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div className="md:col-span-2"><label className="label block mb-2">Задача</label><textarea rows={2} value={proj.task} onChange={(e) => { const p = [...content.projects]; p[i] = { ...p[i], task: e.target.value }; updateContent('projects', p); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+                    <ImageUploader
+                      value={proj.cover}
+                      onChange={(value) => { const p = [...content.projects]; p[i] = { ...p[i], cover: value }; updateContent('projects', p); }}
+                      label={`Обложка проекта "${proj.object}"`}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'discuss' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Раздел "Обсудить проект"</h2>
+              <div><label className="label block mb-2">Заголовок</label><input type="text" value={content.discuss.title} onChange={(e) => updateContent('discuss', { ...content.discuss, title: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Описание</label><textarea rows={3} value={content.discuss.description} onChange={(e) => updateContent('discuss', { ...content.discuss, description: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+              <ImageUploader
+                value={content.discuss.image}
+                onChange={(value) => updateContent('discuss', { ...content.discuss, image: value })}
+                label="Изображение секции"
+              />
+            </div>
+          )}
+
+          {activeTab === 'footer' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Подвал сайта</h2>
+              <div><label className="label block mb-2">Описание компании</label><textarea rows={4} value={content.footer.description} onChange={(e) => updateContent('footer', { ...content.footer, description: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+            </div>
+          )}
+
+          {activeTab === 'header' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Шапка сайта</h2>
+              <div><label className="label block mb-2">Подзаголовок</label><input type="text" value={content.header.subtitle} onChange={(e) => updateContent('header', { ...content.header, subtitle: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+            </div>
+          )}
+
+          {activeTab === 'aiAssistant' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>AI-консультант</h2>
+              <div><label className="label block mb-2">Имя консультанта</label><input type="text" value={content.aiAssistant.name} onChange={(e) => updateContent('aiAssistant', { ...content.aiAssistant, name: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Роль</label><input type="text" value={content.aiAssistant.role} onChange={(e) => updateContent('aiAssistant', { ...content.aiAssistant, role: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Приветственное сообщение</label><textarea rows={5} value={content.aiAssistant.greeting} onChange={(e) => updateContent('aiAssistant', { ...content.aiAssistant, greeting: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+            </div>
+          )}
+
+          {activeTab === 'docs' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Документация</h2>
+              <div><label className="label block mb-2">Заголовок страницы</label><input type="text" value={content.docs.title} onChange={(e) => updateContent('docs', { ...content.docs, title: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Описание</label><textarea rows={3} value={content.docs.description} onChange={(e) => updateContent('docs', { ...content.docs, description: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+              {content.docs.sections.map((section, si) => (
+                <div key={si} className="p-6" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                  <p className="label-gold mb-4">Раздел: {section.title}</p>
+                  <div className="mb-4"><label className="label block mb-2">Название раздела</label><input type="text" value={section.title} onChange={(e) => { const s = [...content.docs.sections]; s[si] = { ...s[si], title: e.target.value }; updateContent('docs', { ...content.docs, sections: s }); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                  {section.items.map((item, ii) => (
+                    <div key={ii} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 p-4" style={{ backgroundColor: 'var(--c-iron)' }}>
+                      <div><label className="label block mb-2">Заголовок</label><input type="text" value={item.title} onChange={(e) => { const s = [...content.docs.sections]; s[si].items[ii] = { ...s[si].items[ii], title: e.target.value }; updateContent('docs', { ...content.docs, sections: s }); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                      <div><label className="label block mb-2">Описание</label><input type="text" value={item.desc} onChange={(e) => { const s = [...content.docs.sections]; s[si].items[ii] = { ...s[si].items[ii], desc: e.target.value }; updateContent('docs', { ...content.docs, sections: s }); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {activeTab === 'orderForm' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Форма расчёта</h2>
+              <div><label className="label block mb-2">Заголовок</label><input type="text" value={content.orderForm.title} onChange={(e) => updateContent('orderForm', { ...content.orderForm, title: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Описание</label><textarea rows={3} value={content.orderForm.description} onChange={(e) => updateContent('orderForm', { ...content.orderForm, description: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
+              <div>
+                <label className="label block mb-2">Типы заказчиков (через запятую)</label>
+                <input type="text" value={content.orderForm.customerTypes.join(', ')} onChange={(e) => updateContent('orderForm', { ...content.orderForm, customerTypes: e.target.value.split(',').map(s => s.trim()) })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} />
+              </div>
+              <div>
+                <p className="label block mb-2">Типы проектов</p>
+                {content.orderForm.projectTypes.map((pt, i) => (
+                  <div key={i} className="grid grid-cols-2 gap-4 mb-2">
+                    <input type="text" value={pt.value} onChange={(e) => { const p = [...content.orderForm.projectTypes]; p[i] = { ...p[i], value: e.target.value }; updateContent('orderForm', { ...content.orderForm, projectTypes: p }); }} className="p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} placeholder="value" />
+                    <input type="text" value={pt.label} onChange={(e) => { const p = [...content.orderForm.projectTypes]; p[i] = { ...p[i], label: e.target.value }; updateContent('orderForm', { ...content.orderForm, projectTypes: p }); }} className="p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} placeholder="label" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'terms' && (
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Пользовательское соглашение</h2>
+              <div><label className="label block mb-2">Заголовок</label><input type="text" value={content.terms.title} onChange={(e) => updateContent('terms', { ...content.terms, title: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <div><label className="label block mb-2">Дата вступления в силу</label><input type="text" value={content.terms.date} onChange={(e) => updateContent('terms', { ...content.terms, date: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              {content.terms.sections.map((section, si) => (
+                <div key={si} className="p-6" style={{ backgroundColor: 'var(--c-charcoal)', border: '1px solid var(--c-rule-light)' }}>
+                  <div className="mb-4"><label className="label block mb-2">Заголовок раздела</label><input type="text" value={section.title} onChange={(e) => { const s = [...content.terms.sections]; s[si] = { ...s[si], title: e.target.value }; updateContent('terms', { ...content.terms, sections: s }); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                  {section.items.map((item, ii) => (
+                    <div key={ii} className="mb-2">
+                      <label className="label block mb-1">Пункт {ii + 1}</label>
+                      <textarea rows={2} value={item} onChange={(e) => { const s = [...content.terms.sections]; s[si].items[ii] = e.target.value; updateContent('terms', { ...content.terms, sections: s }); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} />
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           )}
         </div>
