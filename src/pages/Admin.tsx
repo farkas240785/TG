@@ -96,7 +96,12 @@ export default function Admin() {
               <div><label className="label block mb-2">Подзаголовок</label><input type="text" value={content.hero.subtitle} onChange={(e) => updateContent('hero', { ...content.hero, subtitle: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
               <div><label className="label block mb-2">Заголовок</label><input type="text" value={content.hero.title} onChange={(e) => updateContent('hero', { ...content.hero, title: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
               <div><label className="label block mb-2">Описание</label><textarea rows={3} value={content.hero.description} onChange={(e) => updateContent('hero', { ...content.hero, description: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
-              <div><label className="label block mb-2">URL фонового изображения</label><input type="text" value={content.hero.heroImage} onChange={(e) => updateContent('hero', { ...content.hero, heroImage: e.target.value })} className="w-full p-4 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+              <ImageUploader
+                value={content.hero.heroImage}
+                onChange={(value) => updateContent('hero', { ...content.hero, heroImage: value })}
+                label="Фоновое изображение"
+                recommendedSize="1920×1080 px (16:9)"
+              />
             </div>
           )}
 
@@ -157,7 +162,14 @@ export default function Admin() {
                     <div><label className="label block mb-2">Габариты</label><input type="text" value={item.dimensions} onChange={(e) => { const c = [...content.catalog]; c[i] = { ...c[i], dimensions: e.target.value }; updateContent('catalog', c); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
                     <div><label className="label block mb-2">Покрытие</label><input type="text" value={item.coating} onChange={(e) => { const c = [...content.catalog]; c[i] = { ...c[i], coating: e.target.value }; updateContent('catalog', c); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
                     <div className="md:col-span-2"><label className="label block mb-2">Описание</label><textarea rows={2} value={item.description} onChange={(e) => { const c = [...content.catalog]; c[i] = { ...c[i], description: e.target.value }; updateContent('catalog', c); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)] resize-none" style={inputStyle} /></div>
-                    <div className="md:col-span-2"><label className="label block mb-2">URL изображения</label><input type="text" value={item.image} onChange={(e) => { const c = [...content.catalog]; c[i] = { ...c[i], image: e.target.value }; updateContent('catalog', c); }} className="w-full p-3 bg-transparent border focus:outline-none focus:border-[var(--c-gold)]" style={inputStyle} /></div>
+                    <div className="md:col-span-2">
+                      <ImageUploader
+                        value={item.image}
+                        onChange={(value) => { const c = [...content.catalog]; c[i] = { ...c[i], image: value }; updateContent('catalog', c); }}
+                        label="Изображение товара"
+                        recommendedSize="800×1000 px (4:5)"
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -179,6 +191,7 @@ export default function Admin() {
                     value={content.contacts.mapImage}
                     onChange={(value) => updateContent('contacts', { ...content.contacts, mapImage: value })}
                     label="Изображение карты"
+                    recommendedSize="1600×900 px (16:9)"
                   />
                 </div>
               </div>
@@ -218,6 +231,7 @@ export default function Admin() {
                       value={block.imageUrl}
                       onChange={(value) => { const b = [...content.aboutBlocks]; b[i] = { ...b[i], imageUrl: value }; updateContent('aboutBlocks', b); }}
                       label={`Изображение блока "${block.title}"`}
+                      recommendedSize="1600×900 px (16:9)"
                     />
                   </div>
                 </div>
@@ -252,6 +266,7 @@ export default function Admin() {
                       value={t.imageUrl}
                       onChange={(value) => { const th = [...content.thanks]; th[i] = { ...th[i], imageUrl: value }; updateContent('thanks', th); }}
                       label={`Изображение письма от "${t.title}"`}
+                      recommendedSize="900×1200 px (3:4)"
                     />
                   </div>
                 </div>
@@ -275,6 +290,25 @@ export default function Admin() {
                       value={proj.cover}
                       onChange={(value) => { const p = [...content.projects]; p[i] = { ...p[i], cover: value }; updateContent('projects', p); }}
                       label={`Обложка проекта "${proj.object}"`}
+                      recommendedSize="1200×900 px (4:3)"
+                    />
+                    <ImageUploader
+                      value={proj.before}
+                      onChange={(value) => { const p = [...content.projects]; p[i] = { ...p[i], before: value }; updateContent('projects', p); }}
+                      label={`Фото "До" для проекта "${proj.object}"`}
+                      recommendedSize="800×800 px (1:1)"
+                    />
+                    <ImageUploader
+                      value={proj.process}
+                      onChange={(value) => { const p = [...content.projects]; p[i] = { ...p[i], process: value }; updateContent('projects', p); }}
+                      label={`Фото "Процесс" для проекта "${proj.object}"`}
+                      recommendedSize="800×800 px (1:1)"
+                    />
+                    <ImageUploader
+                      value={proj.after}
+                      onChange={(value) => { const p = [...content.projects]; p[i] = { ...p[i], after: value }; updateContent('projects', p); }}
+                      label={`Фото "После" для проекта "${proj.object}"`}
+                      recommendedSize="800×800 px (1:1)"
                     />
                   </div>
                 </div>
@@ -291,6 +325,7 @@ export default function Admin() {
                 value={content.discuss.image}
                 onChange={(value) => updateContent('discuss', { ...content.discuss, image: value })}
                 label="Изображение секции"
+                recommendedSize="1200×900 px (4:3)"
               />
             </div>
           )}

@@ -5,9 +5,10 @@ interface ImageUploaderProps {
   value: string;
   onChange: (value: string) => void;
   label?: string;
+  recommendedSize?: string;
 }
 
-export default function ImageUploader({ value, onChange, label = 'Изображение' }: ImageUploaderProps) {
+export default function ImageUploader({ value, onChange, label = 'Изображение', recommendedSize }: ImageUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPreview, setShowPreview] = useState(false);
@@ -175,9 +176,12 @@ export default function ImageUploader({ value, onChange, label = 'Изображ
       )}
 
       {/* Help Text */}
-      <p className="text-xs" style={{ color: 'var(--c-smoke)' }}>
-        💡 Можно загрузить файл (JPEG, PNG, WebP, GIF, макс. 2MB) или указать URL
-      </p>
+      <div className="text-xs space-y-1" style={{ color: 'var(--c-smoke)' }}>
+        <p>💡 Можно загрузить файл (JPEG, PNG, WebP, GIF, макс. 2MB) или указать URL</p>
+        {recommendedSize && (
+          <p>📐 Рекомендуемый размер: {recommendedSize}</p>
+        )}
+      </div>
     </div>
   );
 }
