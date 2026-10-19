@@ -44,7 +44,7 @@ export default function Header() {
                 </svg>
               </div>
               <div>
-                <div className="text-lg font-semibold tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
+                <div className="text-lg font-semibold tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>ООО <span style={{ color: 'var(--c-gold-rich)' }}>Русич</span></div>
                 <div className="label" style={{ fontSize: '10px' }}>{content.header.subtitle}</div>
               </div>
             </Link>

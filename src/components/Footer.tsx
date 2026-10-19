@@ -16,7 +16,7 @@ export default function Footer() {
                 <path d="M22 8C22 8 18 14 20 18C22 22 24 18 24 18C24 18 26 14 22 8Z" fill="var(--c-gold-rich)"/>
                 <rect x="8" y="36" width="28" height="2" fill="var(--c-brass)"/>
               </svg>
-              <div className="text-lg font-semibold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
+              <div className="text-lg font-semibold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>ООО <span style={{ color: 'var(--c-gold-rich)' }}>Русич</span></div>
             </div>
             <p className="text-sm leading-relaxed max-w-sm mb-8 font-light" style={{ color: 'var(--c-ash)' }}>{content.footer.description}</p>
             <div className="label-gold text-xs" style={{ color: 'var(--c-gold)' }}>ИНН {content.requisites.inn} · ОГРН {content.requisites.ogrn}</div>

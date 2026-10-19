@@ -30,7 +30,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const MOCK_USERS = [
   { id: 'user-001', email: 'demo@tigelgorn.ru', password: 'demo123', name: 'Иванов Сергей Петрович', company: 'ООО "Реставрация-СПб"', role: 'architect' as const, phone: '+7 (812) 555-12-34' },
-  { id: 'user-002', email: 'manager@tigelgorn.ru', password: 'manager123', name: 'Петров Алексей Владимирович', company: 'Тигель и Горн', role: 'manager' as const, phone: '+7 (8352) 12-34-56' },
+  { id: 'user-002', email: 'manager@tigelgorn.ru', password: 'manager123', name: 'Петров Алексей Владимирович', company: 'ООО «Русич»', role: 'manager' as const, phone: '+7 (8352) 12-34-56' },
 ];
 
 export function AuthProvider({ children }: { children: ReactNode }) {
