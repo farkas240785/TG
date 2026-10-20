@@ -60,50 +60,62 @@ export default function Home() {
       </section>
       <section className="py-32" style={{ backgroundColor: 'var(--c-charcoal)' }}>
         <div className="container">
-          <div className="flex justify-between items-end mb-20">
-            <div><p className="label-gold mb-4">Каталог</p><h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Кованые изделия</h2></div>
-            <Link to="/catalog?category=forged" className="link-forge hidden md:inline-block">Все кованые →</Link>
+          <div className="text-center mb-16">
+            <p className="label-gold mb-4">Каталог изделий</p>
+            <h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Выберите категорию</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(forgedCategories).map(([key, cat]) => (
-              <Link key={key} to={`/catalog?category=forged`} className="group card-dark overflow-hidden">
-                <div className="aspect-[4/3] overflow-hidden relative flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
-                  <span className="text-6xl opacity-20">{(cat as any).icon}</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--c-gold)]" style={{ fontFamily: 'var(--f-display)' }}>{(cat as any).name}</h3>
-                  <p className="text-xs mb-3" style={{ color: 'var(--c-ash)' }}>
-                    {Object.keys((cat as any).subcategories).length} подкатегорий
-                  </p>
-                  <span className="link-forge">Смотреть →</span>
-                </div>
-              </Link>
-            ))}
+          
+          <div className="relative overflow-hidden rounded-lg" style={{ aspectRatio: '2/1', boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
+            <img 
+              src="https://image.qwenlm.ai/generated-images/17ae56f4-9a35-405b-b383-ac5714b0e0d8/_result.png" 
+              alt="Мастерская" 
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Разделительная линия */}
+            <div className="absolute top-0 bottom-0 left-1/2 w-1" style={{ backgroundColor: 'var(--c-gold)', transform: 'translateX(-50%)' }}></div>
+            
+            {/* Левая половина - Кованые изделия */}
+            <Link 
+              to="/catalog?category=forged" 
+              className="absolute top-0 left-0 w-1/2 h-full group"
+              style={{ backgroundColor: 'rgba(8, 7, 10, 0.7)' }}
+            >
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-500 group-hover:bg-[rgba(8,7,10,0.5)]">
+                <div className="text-6xl mb-6 transition-transform duration-500 group-hover:scale-110">🔨</div>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 group-hover:text-[var(--c-gold)]" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
+                  Кованые изделия
+                </h3>
+                <p className="text-base md:text-lg mb-6 font-light" style={{ color: 'var(--c-ash)' }}>
+                  {Object.keys(forgedCategories).length} вида • {Object.values(forgedCategories).reduce((sum, cat) => sum + Object.keys((cat as any).subcategories).length, 0)} подкатегорий
+                </p>
+                <div className="link-forge text-lg">Перейти в каталог →</div>
+              </div>
+            </Link>
+            
+            {/* Правая половина - Латунная фурнитура */}
+            <Link 
+              to="/catalog?category=brass" 
+              className="absolute top-0 right-0 w-1/2 h-full group"
+              style={{ backgroundColor: 'rgba(8, 7, 10, 0.7)' }}
+            >
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-500 group-hover:bg-[rgba(8,7,10,0.5)]">
+                <div className="text-6xl mb-6 transition-transform duration-500 group-hover:scale-110">✨</div>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 group-hover:text-[var(--c-gold)]" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
+                  Латунная фурнитура
+                </h3>
+                <p className="text-base md:text-lg mb-6 font-light" style={{ color: 'var(--c-ash)' }}>
+                  {Object.keys(brassCategories).length} категорий • {Object.values(brassCategories).reduce((sum, cat) => sum + Object.keys((cat as any).subcategories).length, 0)} подкатегорий
+                </p>
+                <div className="link-forge text-lg">Перейти в каталог →</div>
+              </div>
+            </Link>
           </div>
-        </div>
-      </section>
-
-      <section className="py-32" style={{ backgroundColor: 'var(--c-coal)' }}>
-        <div className="container">
-          <div className="flex justify-between items-end mb-20">
-            <div><p className="label-gold mb-4">Каталог</p><h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Латунная фурнитура</h2></div>
-            <Link to="/catalog?category=brass" className="link-forge hidden md:inline-block">Вся латунная →</Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Object.entries(brassCategories).map(([key, cat]) => (
-              <Link key={key} to={`/catalog?category=brass`} className="group card-dark overflow-hidden">
-                <div className="aspect-[4/3] overflow-hidden relative flex items-center justify-center" style={{ backgroundColor: 'var(--c-iron)' }}>
-                  <span className="text-6xl opacity-20">{(cat as any).icon}</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--c-gold)]" style={{ fontFamily: 'var(--f-display)' }}>{(cat as any).name}</h3>
-                  <p className="text-xs mb-3" style={{ color: 'var(--c-ash)' }}>
-                    {Object.keys((cat as any).subcategories).length} подкатегорий
-                  </p>
-                  <span className="link-forge">Смотреть →</span>
-                </div>
-              </Link>
-            ))}
+          
+          <div className="mt-12 text-center">
+            <p className="text-sm" style={{ color: 'var(--c-ash)' }}>
+              Нажмите на нужную категорию для перехода в древовидный каталог
+            </p>
           </div>
         </div>
       </section>
