@@ -82,7 +82,6 @@ export default function Home() {
               style={{ backgroundColor: 'rgba(8, 7, 10, 0.7)' }}
             >
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-500 group-hover:bg-[rgba(8,7,10,0.5)]">
-                <div className="text-6xl mb-6 transition-transform duration-500 group-hover:scale-110">🔨</div>
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 group-hover:text-[var(--c-gold)]" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
                   Кованые изделия
                 </h3>
@@ -100,7 +99,6 @@ export default function Home() {
               style={{ backgroundColor: 'rgba(8, 7, 10, 0.7)' }}
             >
               <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-500 group-hover:bg-[rgba(8,7,10,0.5)]">
-                <div className="text-6xl mb-6 transition-transform duration-500 group-hover:scale-110">✨</div>
                 <h3 className="text-3xl md:text-4xl font-bold mb-4 transition-colors duration-300 group-hover:text-[var(--c-gold)]" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
                   Латунная фурнитура
                 </h3>
