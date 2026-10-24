@@ -127,10 +127,10 @@ export default function Catalog() {
   return (
     <div>
       {/* Заголовок */}
-      <section className="py-16" style={{ backgroundColor: 'var(--c-charcoal)' }}>
+      <section className="py-24" style={{ backgroundColor: 'var(--c-charcoal)' }}>
         <div className="container">
-          <p className="label-gold mb-4">Каталог изделий</p>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
+          <p className="label-gold mb-6">Каталог изделий</p>
+          <h1 className="text-6xl md:text-7xl font-bold mb-8 tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>
             Историческая фурнитура
           </h1>
 
@@ -151,12 +151,12 @@ export default function Catalog() {
           </nav>
 
           {/* Статистика */}
-          <div className="flex flex-wrap gap-6 text-sm" style={{ color: 'var(--c-ash)' }}>
-            <span>Всего: <strong style={{ color: 'var(--c-parchment)' }}>{categoryStats.total}</strong> изделий</span>
-            <span>Кованые: <strong style={{ color: 'var(--c-parchment)' }}>{categoryStats.forged}</strong></span>
-            <span>Латунные: <strong style={{ color: 'var(--c-parchment)' }}>{categoryStats.brass}</strong></span>
+          <div className="flex flex-wrap gap-8 text-base" style={{ color: 'var(--c-ash)' }}>
+            <span>Всего: <strong className="text-lg" style={{ color: 'var(--c-parchment)' }}>{categoryStats.total}</strong> изделий</span>
+            <span>Кованые: <strong className="text-lg" style={{ color: 'var(--c-parchment)' }}>{categoryStats.forged}</strong></span>
+            <span>Латунные: <strong className="text-lg" style={{ color: 'var(--c-parchment)' }}>{categoryStats.brass}</strong></span>
             {(categoryFilter || subcategoryFilter) && (
-              <span>Показано: <strong style={{ color: 'var(--c-gold)' }}>{filtered.length}</strong></span>
+              <span>Показано: <strong className="text-lg" style={{ color: 'var(--c-gold)' }}>{filtered.length}</strong></span>
             )}
           </div>
         </div>
@@ -440,21 +440,21 @@ function ProductCard({ product, viewMode }: { product: any; viewMode: ViewMode }
     return (
       <Link
         to={`/product/${product.id}`}
-        className="flex gap-6 p-4 card-dark group hover:border-[var(--c-gold)] transition-all"
+        className="flex gap-8 p-6 card-dark group hover:border-[var(--c-gold)] transition-all duration-500"
       >
-        <div className="w-32 h-32 flex-shrink-0 overflow-hidden rounded" style={{ backgroundColor: 'var(--c-iron)' }}>
-          <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div className="w-40 h-40 flex-shrink-0 overflow-hidden rounded-lg" style={{ backgroundColor: 'var(--c-iron)', boxShadow: 'var(--shadow-md)' }}>
+          <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
         </div>
-        <div className="flex-1">
-          <p className="font-mono text-xs mb-1" style={{ color: 'var(--c-gold)' }}>{product.id}</p>
-          <h3 className="text-lg font-semibold mb-2 group-hover:text-[var(--c-gold)] transition-colors" style={{ fontFamily: 'var(--f-display)' }}>
+        <div className="flex-1 flex flex-col justify-center">
+          <p className="font-mono text-sm mb-2" style={{ color: 'var(--c-gold)' }}>{product.id}</p>
+          <h3 className="text-2xl font-semibold mb-3 group-hover:text-[var(--c-gold)] transition-colors duration-300" style={{ fontFamily: 'var(--f-display)' }}>
             {product.title}
           </h3>
-          <p className="text-sm mb-2" style={{ color: 'var(--c-ash)' }}>
+          <p className="text-base mb-3" style={{ color: 'var(--c-ash)' }}>
             {product.category === 'brass' ? 'Латунная фурнитура' : 'Кованые изделия'}
             {product.subcategory && ` · ${product.subcategory}`}
           </p>
-          <p className="text-xs" style={{ color: 'var(--c-smoke)' }}>
+          <p className="text-sm" style={{ color: 'var(--c-smoke)' }}>
             {product.alloy} · {product.dimensions}
           </p>
         </div>
@@ -464,19 +464,20 @@ function ProductCard({ product, viewMode }: { product: any; viewMode: ViewMode }
 
   return (
     <article className="group">
-      <div className="overflow-hidden mb-4 relative" style={{ aspectRatio: '4/5' }}>
+      <div className="overflow-hidden mb-6 relative rounded-lg" style={{ aspectRatio: '4/5', boxShadow: 'var(--shadow-lg)' }}>
         <Link to={`/product/${product.id}`} className="block w-full h-full">
-          <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          <img src={product.image} alt={product.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--c-coal)] via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
         </Link>
       </div>
-      <p className="font-mono text-xs mb-2" style={{ color: 'var(--c-gold)' }}>{product.id}</p>
-      <h3 className="text-lg font-semibold mb-2 group-hover:text-[var(--c-gold)] transition-colors" style={{ fontFamily: 'var(--f-display)' }}>
+      <p className="font-mono text-sm mb-3" style={{ color: 'var(--c-gold)' }}>{product.id}</p>
+      <h3 className="text-xl font-semibold mb-3 group-hover:text-[var(--c-gold)] transition-colors duration-300" style={{ fontFamily: 'var(--f-display)' }}>
         <Link to={`/product/${product.id}`}>{product.title}</Link>
       </h3>
-      <p className="label text-xs mb-1">
+      <p className="label text-xs mb-2">
         {product.category === 'brass' ? 'Латунная фурнитура' : 'Кованые изделия'}
       </p>
-      <p className="text-xs" style={{ color: 'var(--c-ash)' }}>{product.alloy}</p>
+      <p className="text-sm" style={{ color: 'var(--c-ash)' }}>{product.alloy}</p>
     </article>
   );
 }

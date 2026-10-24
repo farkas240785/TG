@@ -22,11 +22,11 @@ export default function Header() {
   return (
     <>
       <a href="#main" className="skip-link">К содержанию</a>
-      <header className="no-print sticky top-0 z-50" style={{ backgroundColor: 'rgba(12, 11, 14, 0.95)', backdropFilter: 'blur(12px)' }}>
+      <header className="no-print sticky top-0 z-50" style={{ backgroundColor: 'rgba(12, 11, 14, 0.98)', backdropFilter: 'blur(20px) saturate(180%)' }}>
         <div className="container">
-          <div className="flex items-center justify-between py-5 gap-6">
-            <Link to="/" className="flex items-center gap-4 shrink-0 group">
-              <div className="relative w-12 h-12">
+          <div className="flex items-center justify-between py-6 gap-6">
+            <Link to="/" className="flex items-center gap-5 shrink-0 group">
+              <div className="relative w-14 h-14 transition-transform duration-500 group-hover:scale-105">
                 <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
                   <defs>
                     <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -44,12 +44,22 @@ export default function Header() {
                 </svg>
               </div>
               <div>
-                <div className="text-lg font-semibold tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
-                <div className="label" style={{ fontSize: '10px' }}>{content.header.subtitle}</div>
+                <div className="text-xl font-semibold tracking-tight" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
+                <div className="label" style={{ fontSize: '10px', marginTop: '2px' }}>{content.header.subtitle}</div>
               </div>
             </Link>
-            <nav className="hidden lg:flex items-center gap-8" aria-label="Основная навигация">
-              {nav.map(item => (<Link key={item.to} to={item.to} className="text-sm font-light hover:text-[var(--c-gold-rich)] transition-colors" style={{ color: 'var(--c-ash)' }}>{item.label}</Link>))}
+            <nav className="hidden lg:flex items-center gap-10" aria-label="Основная навигация">
+              {nav.map(item => (
+                <Link 
+                  key={item.to} 
+                  to={item.to} 
+                  className="text-sm font-light hover:text-[var(--c-gold-rich)] transition-all duration-300 relative group" 
+                  style={{ color: 'var(--c-ash)' }}
+                >
+                  {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[var(--c-gold)] to-[var(--c-gold-light)] group-hover:w-full transition-all duration-300"></span>
+                </Link>
+              ))}
             </nav>
             <div className="flex items-center gap-4">
               {isAuthenticated ? (

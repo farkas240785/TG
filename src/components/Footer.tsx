@@ -4,21 +4,24 @@ import { useSiteContent } from '../context/SiteContentContext';
 export default function Footer() {
   const { content } = useSiteContent();
   return (
-    <footer className="no-print mt-32" style={{ backgroundColor: 'var(--c-void)', borderTop: '1px solid var(--c-rule-gold)' }}>
+    <footer className="no-print mt-40" style={{ backgroundColor: 'var(--c-void)', borderTop: '1px solid var(--c-rule-gold)' }}>
       <div className="gold-line"></div>
-      <div className="container py-20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+      <div className="container py-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
           <div className="md:col-span-5">
-            <div className="flex items-center gap-4 mb-8">
-              <svg viewBox="0 0 44 44" fill="none" className="w-11 h-11">
+            <div className="flex items-center gap-5 mb-10">
+              <svg viewBox="0 0 44 44" fill="none" className="w-12 h-12">
                 <path d="M10 20C10 20 9 28 12 32C15 36 29 36 32 32C35 28 34 20 34 20" stroke="var(--c-gold)" strokeWidth="2" fill="none"/>
                 <ellipse cx="22" cy="20" rx="12" ry="3" stroke="var(--c-gold)" strokeWidth="1.5" fill="none"/>
                 <path d="M22 8C22 8 18 14 20 18C22 22 24 18 24 18C24 18 26 14 22 8Z" fill="var(--c-gold-rich)"/>
                 <rect x="8" y="36" width="28" height="2" fill="var(--c-brass)"/>
               </svg>
-              <div className="text-lg font-semibold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
+              <div>
+                <div className="text-xl font-semibold" style={{ fontFamily: 'var(--f-display)', color: 'var(--c-parchment)' }}>Тигель <span style={{ color: 'var(--c-gold-rich)' }}>&</span> Горн</div>
+                <div className="label" style={{ fontSize: '10px', marginTop: '4px' }}>Литейно-кузнечная мануфактура</div>
+              </div>
             </div>
-            <p className="text-sm leading-relaxed max-w-sm mb-8 font-light" style={{ color: 'var(--c-ash)' }}>{content.footer.description}</p>
+            <p className="text-base leading-relaxed max-w-sm mb-10 font-light" style={{ color: 'var(--c-ash)' }}>{content.footer.description}</p>
             <div className="label-gold text-xs" style={{ color: 'var(--c-gold)' }}>ИНН {content.requisites.inn} · ОГРН {content.requisites.ogrn}</div>
           </div>
           <div className="md:col-span-3">
