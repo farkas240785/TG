@@ -25,7 +25,7 @@ const defaultContent: SiteContent = {
     subtitle: 'Литейно-кузнечная мануфактура · Чебоксары · с 2014 года',
     title: 'Историческая фурнитура. по нормативам КГИОП',
     description: 'Научно обоснованное воссоздание утраченной фурнитуры для объектов культурного наследия.',
-    heroImage: 'https://image.qwenlm.ai/generated-images/adfdf75f-a66a-4039-ab2e-d4f901b70acf/_result.png',
+    heroImage: 'https://image.qwenlm.ai/generated-images/d1a049d9-9e6d-45fa-9f8d-271d1c9ec56d/_result.png',
   },
   stats: [
     { num: '12+', label: 'лет специализации', sub: 'на объектах ОКН' },
