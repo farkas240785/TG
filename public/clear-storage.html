@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Очистка localStorage</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e8e2d4;
+        }
+        h1 {
+            color: #d4a017;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #d4a017;
+        }
+        button {
+            background: linear-gradient(135deg, #8B6914, #B8860B, #D4A017);
+            color: #0C0B0E;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.3);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .secondary {
+            background: #2a2a2a;
+            color: #e8e2d4;
+            border: 1px solid #3a3a3a;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success {
+            background: rgba(90, 122, 94, 0.2);
+            border: 1px solid #5a7a5e;
+            color: #7a9a7e;
+        }
+        .error {
+            background: rgba(166, 61, 47, 0.2);
+            border: 1px solid #a63d2f;
+            color: #c45a3c;
+        }
+        code {
+            background: #2a2a2a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Очистка localStorage</h1>
+    
+    <div class="info">
+        <p><strong>Проблема:</strong> HERO-изображение не меняется, потому что старые данные сохраняются в localStorage браузера.</p>
+        <p><strong>Решение:</strong> Очистите localStorage, чтобы загрузить новые значения по умолчанию.</p>
+    </div>
+
+    <div>
+        <button onclick="clearLocalStorage()">🗑️ Очистить весь localStorage</button>
+        <button class="secondary" onclick="clearSiteContent()">🎨 Очистить только контент сайта</button>
+        <button class="secondary" onclick="goToSite()">🏠 Перейти на сайт</button>
+    </div>
+
+    <div id="status"></div>
+
+    <div class="info" style="margin-top: 30px;">
+        <h3>📋 Что будет очищено:</h3>
+        <ul>
+            <li><code>site_content</code> - весь контент сайта (включая HERO-изображение)</li>
+            <li><code>auth_user</code> - данные авторизации (если есть)</li>
+            <li><code>tg_project_folder</code> - папка проекта (если есть)</li>
+        </ul>
+        <p><strong>После очистки:</strong> Сайт загрузит новые значения по умолчанию из <code>defaultContent</code>.</p>
+    </div>
+
+    <div class="info">
+        <h3>💡 Альтернативный способ:</h3>
+        <p>Откройте консоль браузера (F12) и выполните:</p>
+        <pre><code>localStorage.clear()</code></pre>
+        <p>Затем перезагрузите страницу.</p>
+    </div>
+
+    <script>
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = type;
+            status.style.display = 'block';
+        }
+
+        function clearLocalStorage() {
+            try {
+                localStorage.clear();
+                showStatus('✅ localStorage полностью очищен! Теперь перейдите на сайт.', 'success');
+            } catch (error) {
+                showStatus('❌ Ошибка при очистке: ' + error.message, 'error');
+            }
+        }
+
+        function clearSiteContent() {
+            try {
+                localStorage.removeItem('site_content');
+                showStatus('✅ Контент сайта очищен! HERO-изображение обновится при перезагрузке.', 'success');
+            } catch (error) {
+                showStatus('❌ Ошибка при очистке: ' + error.message, 'error');
+            }
+        }
+
+        function goToSite() {
+            window.location.href = '/';
+        }
+
+        // Показываем текущее состояние localStorage
+        window.addEventListener('load', function() {
+            const siteContent = localStorage.getItem('site_content');
+            if (siteContent) {
+                try {
+                    const data = JSON.parse(siteContent);
+                    if (data.hero && data.hero.heroImage) {
+                        console.log('Текущее HERO-изображение в localStorage:', data.hero.heroImage);
+                        showStatus('⚠️ Обнаружены сохранённые данные в localStorage. Нажмите "Очистить только контент сайта" для обновления HERO-изображения.', 'error');
+                    }
+                } catch (e) {
+                    console.error('Ошибка при чтении localStorage:', e);
+                }
+            } else {
+                showStatus('✅ localStorage пуст. Сайт использует значения по умолчанию.', 'success');
+            }
+        });
+    </script>
+</body>
+</html>
