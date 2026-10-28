@@ -7,21 +7,18 @@ export default function Home() {
   return (
     <div>
       <section className="relative overflow-hidden" style={{ backgroundColor: '#000000', minHeight: '85vh' }}>
-        {/* Анимированный фон с эффектами металла и кузни */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Основной слой - расплавленный металл */}
-          <div className="absolute inset-0 hero-molten-metal"></div>
-          
-          {/* Слой с искрами */}
-          <div className="absolute inset-0 hero-sparks"></div>
-          
-          {/* Свечение горна */}
-          <div className="absolute inset-0 hero-forge-glow"></div>
-          
-          {/* Дым и пар */}
-          <div className="absolute inset-0 hero-smoke"></div>
+        <div className="absolute inset-0">
+          <img 
+            src={content.hero.heroImage} 
+            alt="Мастерская" 
+            className="w-full h-full object-cover opacity-40" 
+            style={{ filter: 'brightness(0.5) contrast(1.1)' }} 
+          />
         </div>
-        
+        <div className="absolute inset-0" style={{ 
+          background: 'linear-gradient(to right, rgba(8, 7, 10, 0.98) 0%, rgba(8, 7, 10, 0.4) 50%, rgba(8, 7, 10, 0.2) 100%)',
+          backdropFilter: 'blur(2px)'
+        }}></div>
         <div className="container relative z-10 py-32 lg:py-40">
           <div className="max-w-5xl">
             <p className="label-gold mb-8 tracking-widest">{content.hero.subtitle}</p>
